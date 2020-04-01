@@ -1,0 +1,36 @@
+.landing-sect {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+  color: aliceblue;
+  background-color: #000000;
+}
+
+.banner-group {
+  width: 50%;
+  margin: 10% auto;
+}
+
+.app-title {
+  text-align: center;
+}
+
+.app-desc {
+  text-align: center;
+}
+
+.button-group {
+  margin: 5% 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-group button {
+  width: 50%;
+  margin: 1% auto;
+}
