@@ -1,0 +1,35 @@
+.app-sect {
+  display: flex;
+  flex-direction: column;
+  margin: 5% 5% 0 5%;
+  height: 100vh;
+  padding-bottom: 50px;
+}
+
+.search-list {
+  text-align: center;
+}
+
+.search-list > div {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.dash-header {
+  background-color: white;
+  display: flex;
+  margin-bottom: 5%;
+}
+
+.create-log {
+  height: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .app-sect {
+    margin-top: 15%;
+  }
+}

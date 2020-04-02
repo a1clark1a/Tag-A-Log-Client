@@ -1,0 +1,20 @@
+main {
+  position: relative;
+  min-height: 100vh;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  text-decoration: none;
+  padding: 10px 0;
+  text-align: center;
+  background-color: rgb(36, 35, 35);
+  color: aliceblue;
+  height: 50px;
+  width: 100%;
+}
+
+footer > code > a {
+  color: aliceblue;
+}

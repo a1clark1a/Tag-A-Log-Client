@@ -1,8 +1,8 @@
 .landing-sect {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 header {
@@ -17,6 +17,7 @@ header {
 }
 
 .app-title {
+  font-size: 3rem;
   text-align: center;
 }
 
@@ -33,4 +34,14 @@ header {
 .button-group button {
   width: 50%;
   margin: 1% auto;
+}
+
+/*Temp CSS */
+a {
+  width: 50%;
+  margin: 1% auto;
+}
+
+a > button {
+  width: 100% !important;
 }

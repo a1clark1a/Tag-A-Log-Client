@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import LandingPage from "./components/LandingPage/LandingPage";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 import "./App.css";
 
@@ -13,6 +14,7 @@ class App extends Component {
       <main className="App">
         <Switch>
           <Route exact path={"/"} component={LandingPage} />
+          <Route path={"/dashboard"} component={Dashboard} />
         </Switch>
         <footer>
           <code>

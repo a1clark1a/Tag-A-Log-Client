@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import LogIn from "../formComponents/LogIn";
+import SignUp from "../formComponents/SignUp";
 
 import "./LandingPage.css";
 
 function LandingPage() {
+  const [active, setActive] = useState(null);
+
   return (
     <section className="landing-sect">
       <header role="banner">
@@ -17,9 +23,16 @@ function LandingPage() {
         </article>
       </header>
       <article className="button-group">
-        {/*TODO make these toggle buttons to hide/unhide form components for each button */}
-        <button>Sign Up</button> {/* TODO replace with form components*/}
-        <button>Login</button> {/* TODO replace with form components*/}
+        <button className="form-btn signUp" onClick={() => setActive("signUp")}>
+          Sign Up
+        </button>
+        {active === "signUp" && <SignUp />}
+        <Link to="/dashboard">
+          {/*Temporary Link for static-client with no login function */}
+          <button className="form-btn logIn" onClick={() => setActive("logIn")}>
+            Login
+          </button>
+        </Link>
       </article>
     </section>
   );
