@@ -5,7 +5,7 @@
   padding-bottom: 50px;
 }
 
-header {
+.banner {
   width: 100%;
   color: aliceblue;
   background-color: #000000;
@@ -37,7 +37,7 @@ header {
 }
 
 /*Temp CSS */
-a {
+.button-group > a {
   width: 50%;
   margin: 1% auto;
 }

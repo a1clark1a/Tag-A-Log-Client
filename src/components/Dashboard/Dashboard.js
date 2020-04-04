@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import SearchBar from "../formComponents/SearchBar";
-import Navbar from "../Sidebar/Navbar";
-import LogPage from "../LogPage/Logpage";
 
 import "./Dashboard.css";
 
@@ -11,17 +9,15 @@ class Dashboard extends Component {
   render() {
     return (
       <section className="app-sect">
-        <Navbar />
         <section className="dashboard-sect">
           <header className="dash-header">
             <div>
-              <Link to={"/LogPage"}>
+              <Link to={"/logpage"}>
                 <button className="create-log">Create Log</button>
               </Link>
             </div>
             <SearchBar />
           </header>
-          {/*Change into component */}
           <div className="search-list">
             <label>
               Sort by:{" "}
@@ -31,17 +27,26 @@ class Dashboard extends Component {
                 <option>Descending</option>
               </select>
             </label>
-            <div>item list </div>
-            <div>item list </div>
-            <div>item list </div>
-            <div>item list </div>
-            <div>item list </div>
-            <div>item list </div>
+            <Link to={"/LogPage"}>
+              <div>item list </div>
+            </Link>
+            <Link to={"/LogPage"}>
+              <div>item list </div>
+            </Link>
+            <Link to={"/LogPage"}>
+              <div>item list </div>
+            </Link>
+            <Link to={"/LogPage"}>
+              <div>item list </div>
+            </Link>
+            <Link to={"/LogPage"}>
+              <div>item list </div>
+            </Link>
+            <Link to={"/LogPage"}>
+              <div>item list </div>
+            </Link>
           </div>
         </section>
-        <Switch>
-          <Route path={"/LogPage"} component={LogPage} />
-        </Switch>
       </section>
     );
   }

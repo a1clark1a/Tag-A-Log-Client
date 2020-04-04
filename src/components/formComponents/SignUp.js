@@ -4,8 +4,8 @@ import "./SignUp.css";
 
 function SignUp({ handleSubmit }) {
   return (
-    <form onSubmit={e => handleSubmit(e)}>
-      <fieldset>
+    <form className="signup-form" onSubmit={e => handleSubmit(e)}>
+      <fieldset className="signup-fieldset">
         <label htmlFor="full-name">
           Full Name:{" "}
           <input

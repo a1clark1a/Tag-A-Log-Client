@@ -4,7 +4,7 @@ import "./SearchBar.css";
 
 function SearchBar() {
   return (
-    <form>
+    <form className="search-form">
       <label>
         Search Log:{" "}
         <select>

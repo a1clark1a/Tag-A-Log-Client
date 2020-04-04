@@ -11,7 +11,7 @@ function LandingPage() {
 
   return (
     <section className="landing-sect">
-      <header role="banner">
+      <header role="banner" className="banner">
         <article className="banner-group">
           <h1 className="app-title">Tech-Log</h1>
           <h3 className="app-desc">

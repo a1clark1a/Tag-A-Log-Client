@@ -7,10 +7,14 @@ function Navbar() {
   return (
     <nav>
       <div>
-        <button>Dashboard</button>
+        <Link to={"/dashboard"}>
+          <button>Dashboard</button>
+        </Link>
       </div>
       <div>
-        <button>Profile</button>
+        <Link to={"/ProfilePage"}>
+          <button>Profile</button>
+        </Link>
       </div>
       <div>
         <Link to={"/"}>

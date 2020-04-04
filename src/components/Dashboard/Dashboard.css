@@ -10,12 +10,14 @@
   text-align: center;
 }
 
-.search-list > div {
+.search-list > a {
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
   margin: 0.5rem;
   padding: 0.5rem;
+  text-decoration: none;
+  color: black;
 }
 
 .dash-header {
