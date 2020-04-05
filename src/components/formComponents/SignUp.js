@@ -52,7 +52,7 @@ function SignUp({ handleSubmit }) {
             required
           />
         </label>
-        <button className="form-btn" type="submit">
+        <button className="form-btn" type="submit" disabled>
           Register
         </button>
       </fieldset>

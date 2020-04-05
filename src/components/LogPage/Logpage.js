@@ -16,7 +16,7 @@ function LogPage() {
           <input value="tags show up here" />
           <label>Add a url:</label> <input type="text" />
           <textarea placeholder="description"></textarea>
-          <button>create or edit</button>
+          <button disabled>create or edit</button>
         </fieldset>
       </form>
     </section>
