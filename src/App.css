@@ -4,7 +4,6 @@ main {
 }
 
 footer {
-  position: absolute;
   bottom: 0;
   text-decoration: none;
   padding: 10px 0;
@@ -17,4 +16,24 @@ footer {
 
 footer > code > a {
   color: aliceblue;
+}
+
+a,
+button,
+.item {
+  cursor: pointer;
+}
+
+.list {
+  background-color: rgb(233, 231, 231);
+}
+
+.list > a:hover,
+.item:hover {
+  background-color: #81ebc2;
+}
+
+.list > a:nth-child(even):hover,
+.item:nth-child(even):hover {
+  background-color: rgb(143, 245, 245);
 }

@@ -8,18 +8,13 @@ function LogPage() {
       <form className="log-form">
         <fieldset className="log-fieldset">
           <legend>Name of Log</legend>
-          <label>
-            Name of log: <input type="text" />
-          </label>
-          <label>
-            Add a tag: <input type="text" />
-          </label>
-          <label>
-            Tags: <input value="tags show up here" />
-          </label>
-          <label>
-            Add a url: <input type="text" />
-          </label>
+          <label>Name of log: </label>
+          <input type="text" />
+          <label>Add a tag: </label>
+          <input type="text" />
+          <label>Tags: </label>
+          <input value="tags show up here" />
+          <label>Add a url:</label> <input type="text" />
           <textarea placeholder="description"></textarea>
           <button>create or edit</button>
         </fieldset>

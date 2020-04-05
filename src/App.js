@@ -18,8 +18,8 @@ class App extends Component {
         <Switch>
           <Route exact path={"/"} component={LandingPage} />
           <Route path={"/dashboard"} component={Dashboard} />
-          <Route path={"/LogPage"} component={LogPage} />
-          <Route path={"/ProfilePage"} component={ProfilePage} />
+          <Route path={"/logpage/:logpageId"} component={LogPage} />
+          <Route path={"/profilepage"} component={ProfilePage} />
         </Switch>
         <footer>
           <code>

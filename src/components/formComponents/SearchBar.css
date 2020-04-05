@@ -6,3 +6,12 @@
   flex: 1;
   color: black;
 }
+
+.searchbar-label {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.search-form > input {
+  height: 50px;
+}

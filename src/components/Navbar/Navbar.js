@@ -4,23 +4,20 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  const smoothScrollToTop = () => {
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+  };
   return (
     <nav>
-      <div>
-        <Link to={"/dashboard"}>
-          <button>Dashboard</button>
-        </Link>
-      </div>
-      <div>
-        <Link to={"/ProfilePage"}>
-          <button>Profile</button>
-        </Link>
-      </div>
-      <div>
-        <Link to={"/"}>
-          <button>Log Out</button>
-        </Link>
-      </div>
+      <Link to={"/dashboard"} onclick={smoothScrollToTop()}>
+        Dashboard
+      </Link>
+
+      <Link to={"/profilepage"} onclick={smoothScrollToTop()}>
+        Profile
+      </Link>
+
+      <Link to={"/"}>Log Out</Link>
     </nav>
   );
 }

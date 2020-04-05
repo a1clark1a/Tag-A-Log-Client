@@ -1,15 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./ProfilePage.css";
 
 function ProfilePage() {
+  const [active, setActive] = useState("Logs");
+
+  const displayLogs = () => {
+    const list = [];
+    for (let i = 0; i < 25; i++) {
+      list.push(
+        <div className="item">
+          <Link to={`/logpage/${i}`}>item list</Link>
+          <button>X</button>
+        </div>
+      );
+    }
+    return list;
+  };
+
+  const displayTags = () => {
+    const item = (
+      <div className="tags">
+        Tag <button>X</button>
+      </div>
+    );
+    const list = [];
+    for (let i = 0; i < 10; i++) {
+      list.push(item);
+    }
+
+    return list;
+  };
+
   return (
     <section className="profile-sect">
       <header className="button-grp">
-        <button>Tags</button>
-        <button>Logs</button>
+        <button onClick={() => setActive("Logs")}>Logs</button>
+        <button onClick={() => setActive("Tags")}>Tags</button>
       </header>
-      <div class="list">
+      <div class="prof-list list">
         <label className="sort">
           Sort by:{" "}
           <select>
@@ -18,24 +48,7 @@ function ProfilePage() {
             <option>Descending</option>
           </select>
         </label>
-        <div>
-          item list <button>X</button>
-        </div>
-        <div>
-          item list <button>X</button>
-        </div>
-        <div>
-          item list <button>X</button>
-        </div>
-        <div>
-          item list <button>X</button>
-        </div>
-        <div>
-          item list <button>X</button>
-        </div>
-        <div>
-          item list <button>X</button>
-        </div>
+        {active === "Logs" ? displayLogs() : displayTags()}
       </div>
     </section>
   );

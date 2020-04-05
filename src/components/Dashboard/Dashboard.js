@@ -6,20 +6,30 @@ import SearchBar from "../formComponents/SearchBar";
 import "./Dashboard.css";
 
 class Dashboard extends Component {
+  searchList() {
+    const list = [];
+    for (let i = 0; i < 25; i++) {
+      list.push(
+        <Link to={`/logpage/${i}`}>
+          <div>item list </div>
+        </Link>
+      );
+    }
+    return list;
+  }
+
   render() {
     return (
       <section className="app-sect">
         <section className="dashboard-sect">
           <header className="dash-header">
-            <div>
-              <Link to={"/logpage"}>
-                <button className="create-log">Create Log</button>
-              </Link>
-            </div>
+            <Link to={`/logpage/${1 /*temp num */}`} className="create-log">
+              <button>Create Log</button>
+            </Link>
             <SearchBar />
           </header>
-          <div className="search-list">
-            <label>
+          <div className="search-list list">
+            <label className="sort-by-label">
               Sort by:{" "}
               <select>
                 <option>Date created</option>
@@ -27,24 +37,7 @@ class Dashboard extends Component {
                 <option>Descending</option>
               </select>
             </label>
-            <Link to={"/LogPage"}>
-              <div>item list </div>
-            </Link>
-            <Link to={"/LogPage"}>
-              <div>item list </div>
-            </Link>
-            <Link to={"/LogPage"}>
-              <div>item list </div>
-            </Link>
-            <Link to={"/LogPage"}>
-              <div>item list </div>
-            </Link>
-            <Link to={"/LogPage"}>
-              <div>item list </div>
-            </Link>
-            <Link to={"/LogPage"}>
-              <div>item list </div>
-            </Link>
+            {this.searchList()}
           </div>
         </section>
       </section>

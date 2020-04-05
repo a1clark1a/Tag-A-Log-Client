@@ -5,7 +5,7 @@ import "./SearchBar.css";
 function SearchBar() {
   return (
     <form className="search-form">
-      <label>
+      <label className="searchbar-label">
         Search Log:{" "}
         <select>
           <option>Search By</option>
@@ -13,7 +13,7 @@ function SearchBar() {
           <option>Name</option>
         </select>
       </label>
-      <input type="Search" />
+      <input type="Search" className="search-input" />
       <input type="text" value="AutoSuggestion here" />
     </form>
   );

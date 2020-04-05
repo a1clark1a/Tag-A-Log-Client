@@ -3,6 +3,7 @@
   flex-direction: column;
   margin: 0 auto;
   padding-bottom: 50px;
+  min-height: 100vh;
 }
 
 .banner {

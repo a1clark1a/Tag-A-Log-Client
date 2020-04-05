@@ -1,13 +1,23 @@
 .app-sect {
   display: flex;
   flex-direction: column;
-  margin: 5% 5% 0 5%;
-  height: 100vh;
+  margin: 5rem 5% 0 5%;
+  min-height: 100vh;
   padding-bottom: 50px;
+}
+
+.dashboard-sect {
+  margin-top: 3rem;
+}
+
+.sort-by-label {
+  font-size: 1.5rem;
 }
 
 .search-list {
   text-align: center;
+  border: 1px solid black;
+  padding: 1% 2%;
 }
 
 .search-list > a {
@@ -27,7 +37,18 @@
 }
 
 .create-log {
+  max-width: 120px;
+}
+
+.create-log > button {
   height: 100%;
+  font-size: 2rem;
+  background-color: #d11f31;
+  border: 1px solid #a50313;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.22) !important;
+  -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.22) !important;
+  box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.22) !important;
 }
 
 @media screen and (max-width: 500px) {
