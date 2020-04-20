@@ -1,0 +1,9 @@
+.notfoundpage-sect {
+  min-height: 100vh;
+  text-align: center;
+  color: rgb(163, 8, 8);
+}
+
+.notfoundpage-sect > h1 {
+  padding-top: 20%;
+}

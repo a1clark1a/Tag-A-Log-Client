@@ -5,9 +5,10 @@ import Layout from "./Layout";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import LogPage from "./components/LogPage/Logpage";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 import "./App.css";
-import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 class App extends Component {
   state = { hasError: false };
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path={"/dashboard"} component={Dashboard} />
           <Route path={"/logpage/:logpageId"} component={LogPage} />
           <Route path={"/profilepage"} component={ProfilePage} />
+          <Route path={"/*"} component={NotFoundPage} />
         </Switch>
         <footer>
           <code>
