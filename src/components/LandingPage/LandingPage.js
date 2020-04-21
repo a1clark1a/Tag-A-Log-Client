@@ -1,14 +1,78 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+import AuthApiService from "../../service/auth-api-service";
+import UsersService from "../../service/user-service";
+import TokenService from "../../service/token-service";
 
 import LogIn from "../formComponents/LogIn";
 import SignUp from "../formComponents/SignUp";
 
 import "./LandingPage.css";
 
-function LandingPage() {
+function LandingPage(props) {
   const [active, setActive] = useState(null);
+  const [error, setError] = useState(null);
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setError(null);
+
+    const { user_name, password } = e.target;
+
+    AuthApiService.postLoginUser({
+      user_name: user_name.value,
+      password: password.value,
+    })
+      .then((res) => {
+        user_name.value = "";
+        password.value = "";
+        TokenService.saveAuthToken(res.authToken);
+        props.history.push("/dashboard");
+      })
+      .catch((res) => {
+        setError(res.error.message);
+      });
+  };
+
+  const handleRegisterNewUser = (e) => {
+    e.preventDefault();
+    setError(null);
+
+    const { user_name, password, email, re_type_password } = e.target;
+    const new_user = {
+      user_name: user_name.value,
+      password: password.value,
+      email: email.value,
+    };
+
+    UsersService.postRegisterUser(new_user)
+      .then((res) => {
+        user_name.value = "";
+        password.value = "";
+        email.value = "";
+        re_type_password.value = "";
+        console.log(res);
+        if (res) {
+          console.log("trigger");
+          AuthApiService.postLoginUser({
+            user_name: new_user.user_name,
+            password: new_user.password,
+          })
+            .then((res) => {
+              user_name.value = "";
+              password.value = "";
+              TokenService.saveAuthToken(res.authToken);
+              props.history.push("/dashboard");
+            })
+            .catch((res) => {
+              setError(res.error.message);
+            });
+        }
+      })
+      .catch((res) => {
+        setError(res.error.message);
+      });
+  };
   return (
     <section className="landing-sect">
       <header role="banner" className="banner">
@@ -23,16 +87,31 @@ function LandingPage() {
         </article>
       </header>
       <article className="button-group">
-        <button className="form-btn signUp" onClick={() => setActive("signUp")}>
+        <button
+          className="form-btn signUp"
+          onClick={() => {
+            setActive("signUp");
+            setError(null);
+          }}
+        >
           Sign Up
         </button>
-        {active === "signUp" && <SignUp />}
-        <Link to="/dashboard">
-          {/*Temporary Link for static-client with no login function */}
-          <button className="form-btn logIn" onClick={() => setActive("logIn")}>
-            Login
-          </button>
-        </Link>
+        {active === "signUp" && (
+          <SignUp handleSubmit={(e) => handleRegisterNewUser(e)} />
+        )}
+        <div role="alert">
+          {error && <p className="error-message">{error}</p>}
+        </div>
+        <button
+          className="form-btn logIn"
+          onClick={() => {
+            setActive("logIn");
+            setError(null);
+          }}
+        >
+          Login
+        </button>
+        {active === "logIn" && <LogIn handleSubmit={(e) => handleLogin(e)} />}
       </article>
     </section>
   );

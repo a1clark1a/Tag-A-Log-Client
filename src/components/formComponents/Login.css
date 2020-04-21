@@ -1,13 +1,9 @@
-.signup-form {
+.login-form {
   margin: 0 auto;
   text-align: center;
 }
 
-.signup-fieldset {
+.login-fieldset {
   display: flex;
   flex-direction: column;
-}
-
-.signup-form > label {
-  margin: 0 auto;
 }

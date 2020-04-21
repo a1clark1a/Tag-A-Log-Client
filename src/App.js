@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Layout from "./Layout";
+import Authenticate from "./utility/Authenitcate";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import LogPage from "./components/LogPage/Logpage";
@@ -18,9 +19,9 @@ class App extends Component {
       <Layout>
         <Switch>
           <Route exact path={"/"} component={LandingPage} />
-          <Route path={"/dashboard"} component={Dashboard} />
-          <Route path={"/logpage/:logpageId"} component={LogPage} />
-          <Route path={"/profilepage"} component={ProfilePage} />
+          <Authenticate path={"/dashboard"} component={Dashboard} />
+          <Authenticate path={"/logpage/:logpageId"} component={LogPage} />
+          <Authenticate path={"/profilepage"} component={ProfilePage} />
           <Route path={"/*"} component={NotFoundPage} />
         </Switch>
         <footer>

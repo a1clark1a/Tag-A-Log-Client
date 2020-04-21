@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+
+import "./Login.css";
 
 function LogIn({ handleSubmit }) {
   return (
-    <form onSubmit={e => handleSubmit(e)}>
-      <fieldset>
-        <label htmlFor="user-name">
+    <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
+      <fieldset className="login-fieldset">
+        <label htmlFor="user_name">
           Username:{" "}
-          <input id="user-name" type="text" placeholder="Enter user-name" />
+          <input id="user_name" type="text" placeholder="Enter user_name" />
         </label>
         <label htmlFor="password">
           Password:{" "}
