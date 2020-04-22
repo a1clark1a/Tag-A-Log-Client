@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import AuthApiService from "../../service/auth-api-service";
 import UsersService from "../../service/user-service";
@@ -9,9 +10,10 @@ import SignUp from "../formComponents/SignUp";
 
 import "./LandingPage.css";
 
-function LandingPage(props) {
+function LandingPage() {
   const [active, setActive] = useState(null);
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ function LandingPage(props) {
         user_name.value = "";
         password.value = "";
         TokenService.saveAuthToken(res.authToken);
-        props.history.push("/dashboard");
+        history.push("/dashboard");
       })
       .catch((res) => {
         setError(res.error.message);
@@ -62,7 +64,7 @@ function LandingPage(props) {
               user_name.value = "";
               password.value = "";
               TokenService.saveAuthToken(res.authToken);
-              props.history.push("/dashboard");
+              history.push("/dashboard");
             })
             .catch((res) => {
               setError(res.error.message);

@@ -9,6 +9,8 @@ import LogPage from "./components/LogPage/Logpage";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
+import { LogProvider } from "./context/ContextProvider";
+
 import "./App.css";
 
 class App extends Component {
@@ -16,26 +18,29 @@ class App extends Component {
 
   render() {
     return (
-      <Layout>
-        <Switch>
-          <Route exact path={"/"} component={LandingPage} />
-          <Authenticate path={"/dashboard"} component={Dashboard} />
-          <Authenticate path={"/logpage/:logpageId"} component={LogPage} />
-          <Authenticate path={"/profilepage"} component={ProfilePage} />
-          <Route path={"/*"} component={NotFoundPage} />
-        </Switch>
-        <footer>
-          <code>
-            <a
-              href="https://acperfecto.now.sh/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Anthony Clark Perfecto @{new Date().getFullYear()}
-            </a>
-          </code>
-        </footer>
-      </Layout>
+      <LogProvider>
+        <Layout>
+          <Switch>
+            <Route exact path={"/"} component={LandingPage} />
+            <Authenticate path={"/dashboard"} component={Dashboard} />
+            <Authenticate path={"/log/:logId"} component={LogPage} />
+            <Authenticate path={"/log"} component={LogPage} />
+            <Authenticate path={"/profilepage"} component={ProfilePage} />
+            <Route path={"/*"} component={NotFoundPage} />
+          </Switch>
+          <footer>
+            <code>
+              <a
+                href="https://acperfecto.now.sh/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Anthony Clark Perfecto @{new Date().getFullYear()}
+              </a>
+            </code>
+          </footer>
+        </Layout>
+      </LogProvider>
     );
   }
 }

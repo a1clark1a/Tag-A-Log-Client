@@ -16,11 +16,11 @@ function Navbar() {
 
   return (
     <nav>
-      <Link to={"/dashboard"} onclick={smoothScrollToTop()}>
+      <Link to={"/dashboard"} onClick={smoothScrollToTop()}>
         Dashboard
       </Link>
 
-      <Link to={"/profilepage"} onclick={smoothScrollToTop()}>
+      <Link to={"/profilepage"} onClick={smoothScrollToTop()}>
         Profile
       </Link>
 

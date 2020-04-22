@@ -1,36 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+//component
+import DisplayLogList from "../DisplayLogList/DisplayLogList";
+import DisplayTagList from "../DisplayTagList/DisplayTagList";
+
+//service
+import Context from "../../context/ContextProvider";
+import LogsService from "../../service/log-service";
+import TagsService from "../../service/tag-service";
 
 import "./ProfilePage.css";
 
 function ProfilePage() {
   const [active, setActive] = useState("Logs");
+  const context = useContext(Context);
+  const {
+    error,
+    logList,
+    tagList,
+
+    setError,
+    setLogList,
+    setTagList,
+
+    clearError,
+    clearLogList,
+    clearTagList,
+  } = context;
+
+  useEffect(() => {
+    clearError();
+    LogsService.getUsersLogs()
+      .then(setLogList)
+      .catch((res) => setError(res.error.message));
+    TagsService.getUserTags()
+      .then(setTagList)
+      .catch((res) => setError(res.error.message));
+
+    return () => {
+      clearLogList();
+      clearTagList();
+    };
+  }, [0]);
 
   const displayLogs = () => {
-    const list = [];
-    for (let i = 0; i < 25; i++) {
-      list.push(
-        <div className="item">
-          <Link to={`/logpage/${i}`}>item list</Link>
-          <button>X</button>
-        </div>
-      );
-    }
-    return list;
+    return logList.map((log, i) => {
+      return <DisplayLogList key={i} log={log} />;
+    });
   };
 
   const displayTags = () => {
-    const item = (
-      <div className="tags">
-        Tag <button>X</button>
-      </div>
-    );
-    const list = [];
-    for (let i = 0; i < 10; i++) {
-      list.push(item);
-    }
-
-    return list;
+    return tagList.map((tag, i) => {
+      return <DisplayTagList key={i} tag={tag} />;
+    });
   };
 
   return (
@@ -39,7 +62,7 @@ function ProfilePage() {
         <button onClick={() => setActive("Logs")}>Logs</button>
         <button onClick={() => setActive("Tags")}>Tags</button>
       </header>
-      <div class="prof-list list">
+      <div className="prof-list list">
         <label className="sort">
           Sort by:{" "}
           <select>

@@ -2,6 +2,17 @@ import config from "../config";
 import TokenService from "./token-service";
 
 const LogsService = {
+  async getLogs() {
+    return await fetch(`${config.API_ENDPOINT}/logs`, {
+      method: "GET",
+      headers: {
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) => {
+      return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
+    });
+  },
+
   getUsersLogs() {
     return fetch(`${config.API_ENDPOINT}/logs`, {
       method: "GET",
