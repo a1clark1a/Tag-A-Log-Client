@@ -70,7 +70,7 @@ function LogPage(props) {
         history.push(`/log/${logId}`);
         allowEdit(false);
       })
-      .catch((res) => setError(res.message));
+      .catch((res) => setError(res.error.message));
   };
 
   return (
