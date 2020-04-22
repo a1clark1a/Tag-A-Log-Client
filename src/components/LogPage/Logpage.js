@@ -5,6 +5,10 @@ import { useHistory } from "react-router-dom";
 import Context from "../../context/ContextProvider";
 import LogsService from "../../service/log-service";
 
+//components
+import DisplayLog from "./DisplayLog/DisplayLog";
+import CreateLog from "../formComponents/CreateLog";
+
 import "./LogPage.css";
 
 function LogPage(props) {
@@ -17,7 +21,6 @@ function LogPage(props) {
   useEffect(() => {
     clearError();
     if (logId) {
-      allowEdit(true);
       LogsService.getClickedLog(logId)
         .then(setLog)
         .catch((res) => setError(res.error.message));
@@ -29,6 +32,7 @@ function LogPage(props) {
   }, []);
 
   const handleCreateLog = (e) => {
+    clearError();
     e.preventDefault();
     const { log_name, url, description } = e.target;
     const newLog = {
@@ -37,68 +41,58 @@ function LogPage(props) {
       description: description.value,
     };
     LogsService.postLog(newLog)
-      .then((res) => {
+      .then((log) => {
         log_name.value = "";
         description.value = "";
         url.value = "";
-        history.push(`/log/${res.id}`);
-        setLog(res);
-        allowEdit(true);
+        history.push(`/log/${log.id}`);
+        setLog(log);
       })
       .catch((res) => setError(res.error.message));
   };
 
   const handleEditLog = (e) => {
+    clearError();
     e.preventDefault();
+    const { log_name, url, description, num_tags } = e.target;
+    const newLog = {
+      log_name: log_name.value,
+      url: url.value,
+      description: description.value,
+      num_tags: num_tags || 0,
+    };
+
+    LogsService.updateLog(logId, newLog)
+      .then(() => {
+        log_name.value = "";
+        description.value = "";
+        url.value = "";
+        history.push(`/log/${logId}`);
+        allowEdit(false);
+      })
+      .catch((res) => setError(res.message));
   };
 
   return (
     <section className="log-sect">
-      <form
-        className="log-form"
-        onSubmit={edit ? handleEditLog : handleCreateLog}
-      >
-        <fieldset className="log-fieldset">
-          <label>Name of log: </label>
-          <input
-            name="log_name"
-            id="log_name"
-            aria-label="log_name"
-            type="text"
-            defaultValue={log.log_name}
-            value={log.log_name}
-          />
-          <label>Add a tag: </label>
-          <input type="text" />
-          <label>Tags: </label>
-          <input defaultValue="tags show up here" />
-          <label>Add a url:</label>
-          <input
-            name="url"
-            id="url"
-            aria-label="url"
-            type="URL"
-            defaultValue={log.url}
-            value={log.url}
-          />
-          <textarea
-            name="description"
-            id="description"
-            aria-label="description"
-            defaultValue={log.description}
-            value={log.description}
-          />
-          {edit ? (
-            <button className="create-log" type="submit">
-              Edit
-            </button>
-          ) : (
-            <button name="log-form" className="edit-log" type="submit">
-              Create
-            </button>
-          )}
-        </fieldset>
-      </form>
+      {!edit && logId ? (
+        <DisplayLog
+          log_name={log.log_name}
+          url={log.url}
+          description={log.description}
+          onClick={() => allowEdit(true)}
+        />
+      ) : (
+        <CreateLog
+          log_name={log.log_name}
+          url={log.url}
+          description={log.description}
+          edit={edit}
+          num_tags={log.num_tags}
+          handleEditLog={handleEditLog}
+          handleCreateLog={handleCreateLog}
+        />
+      )}
       <div role="alert">
         {error && <p className="error-message">{error}</p>}
       </div>

@@ -1,0 +1,11 @@
+.log-div {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.disp-log-name {
+  font-size: 2em;
+}
