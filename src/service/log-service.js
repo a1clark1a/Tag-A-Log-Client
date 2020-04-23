@@ -57,6 +57,23 @@ const LogsService = {
     });
   },
 
+  tagALog(newLogTag) {
+    return fetch(`${config.API_ENDPOINT}/relations`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(newLogTag),
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((error) => {
+          throw error;
+        });
+      }
+    });
+  },
+
   updateLog(logsId, newLog) {
     return fetch(`${config.API_ENDPOINT}/logs/${logsId}`, {
       method: "PATCH",
@@ -76,6 +93,21 @@ const LogsService = {
 
   deleteLog(logsId) {
     return fetch(`${config.API_ENDPOINT}/logs/${logsId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((error) => {
+          throw error;
+        });
+      }
+    });
+  },
+
+  deleteALogTag(logsId, tagsId) {
+    return fetch(`${config.API_ENDPOINT}/relations/${logsId}/${tagsId}`, {
       method: "DELETE",
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,

@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./SearchBar.css";
 
-function SearchBar() {
+function SearchBar({ onChange, onKeyDown, value }) {
   return (
     <form className="search-form">
       <label className="searchbar-label">
         Search Log:{" "}
         <select>
-          <option>Search By</option>
-          <option>Tag</option>
           <option>Name</option>
+          <option>Tag</option>
         </select>
       </label>
-      <input type="Search" className="search-input" />
-      <input type="text" value="AutoSuggestion here" />
+      <input
+        type="Search"
+        className="search-input"
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        value={value}
+      />
     </form>
   );
 }
