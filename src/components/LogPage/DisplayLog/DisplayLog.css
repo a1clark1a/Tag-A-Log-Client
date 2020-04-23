@@ -9,3 +9,11 @@
 .disp-log-name {
   font-size: 2em;
 }
+
+.log-tag-wrapper {
+  display: flex;
+}
+
+.log-tag-wrapper > h3 {
+  margin: 0 0.5em;
+}

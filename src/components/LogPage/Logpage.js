@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 //service
 import Context from "../../context/ContextProvider";
 import LogsService from "../../service/log-service";
+import TagsService from "../../service/tag-service";
 
 //components
 import DisplayLog from "./DisplayLog/DisplayLog";
@@ -16,7 +17,17 @@ function LogPage(props) {
   const history = useHistory();
   const [edit, allowEdit] = useState(false);
   const { logId } = props.match.params;
-  const { log, setLog, error, setError, clearError, clearLog } = context;
+  const {
+    log,
+    setLog,
+    error,
+    setError,
+    tagList,
+    setTagList,
+    clearError,
+    clearLog,
+    clearTagList,
+  } = context;
 
   useEffect(() => {
     clearError();
@@ -24,16 +35,24 @@ function LogPage(props) {
       LogsService.getClickedLog(logId)
         .then(setLog)
         .catch((res) => setError(res.error.message));
+      LogsService.getLogsListOfTags(logId)
+        .then(setTagList)
+        .catch((res) => {
+          console.log(res);
+          setError(res.error.message);
+        });
     }
     return () => {
       clearLog();
+      clearTagList();
       clearError();
     };
   }, []);
 
-  const handleCreateLog = (e) => {
+  const handleCreateLog = (e, addedTagList = []) => {
     clearError();
     e.preventDefault();
+    console.log(addedTagList);
     const { log_name, url, description } = e.target;
     const newLog = {
       log_name: log_name.value,
@@ -45,6 +64,7 @@ function LogPage(props) {
         log_name.value = "";
         description.value = "";
         url.value = "";
+        handleLogTagRelation(addedTagList, log.id);
         history.push(`/log/${log.id}`);
         setLog(log);
       })
@@ -73,12 +93,29 @@ function LogPage(props) {
       .catch((res) => setError(res.error.message));
   };
 
+  const handleLogTagRelation = (addedTagList = [], logId) => {
+    if (addedTagList.length > 0) {
+      addedTagList.forEach((tag) => {
+        const newTag = {
+          tag_name: tag,
+          log_id: logId,
+        };
+        TagsService.postTag(newTag)
+          .then((tag) => {
+            console.log(tag);
+          })
+          .catch((res) => setError(res.error.message));
+      });
+    }
+  };
+
   return (
     <section className="log-sect">
       {!edit && logId ? (
         <DisplayLog
           log_name={log.log_name}
           url={log.url}
+          tagList={tagList}
           description={log.description}
           onClick={() => allowEdit(true)}
         />

@@ -17,11 +17,20 @@ const CreateLog = ({
     description: description || "",
     num_tags: num_tags || 0,
   });
+  const [tag, setTag] = useState("");
+  const [tagList, setTagList] = useState([]);
+
+  //refactor into a react component
+  const displayAddedTags = () => {
+    return tagList.map((tag, i) => {
+      return <div key={i}>{tag}</div>;
+    });
+  };
 
   return (
     <form
       className="log-form"
-      onSubmit={edit ? handleEditLog : handleCreateLog}
+      onSubmit={(e) => (edit ? handleEditLog(e) : handleCreateLog(e, tagList))}
     >
       <fieldset className="log-fieldset">
         <label>Name of log: </label>
@@ -31,6 +40,7 @@ const CreateLog = ({
           aria-label="log_name"
           type="text"
           value={newLog.log_name}
+          autoComplete="off"
           onChange={(e) =>
             setNewLog({
               ...newLog,
@@ -39,9 +49,28 @@ const CreateLog = ({
           }
         />
         <label>Add a tag: </label>
-        <input type="text" />
-        <label>Tags: </label>
-        <input defaultValue="tags show up here" />
+        <div>
+          <input
+            type="text"
+            name="tag"
+            id="tag"
+            aria-label="tag"
+            autoComplete="off"
+            onChange={(e) => setTag(e.currentTarget.value)}
+          />
+
+          <button
+            type="button"
+            onClick={(e) => {
+              setTag("");
+              setTagList((elem) => [...elem, tag]);
+            }}
+          >
+            add
+          </button>
+        </div>
+        <label>Tags: up to 5 </label>
+        <div>{displayAddedTags()}</div>
         <label>Add a url:</label>
         <input
           name="url"

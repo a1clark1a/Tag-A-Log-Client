@@ -7,14 +7,23 @@ const DisplayLog = ({
   url,
   num_tags,
   description,
-  tags = [],
+  tagList = [],
   onClick,
 }) => {
+  console.log(tagList);
+
+  const displayAddedTags = () => {
+    return tagList.map((tag, i) => {
+      console.log(tag);
+      return <h3 key={i}>{tag.tag_name}</h3>;
+    });
+  };
+
   return (
     <section className="log log-sect">
       <div className="log-div">
         <h1 className="log disp-log-name">{log_name}</h1>
-        <h3 className="log disp-log-tags">TAGS HERE</h3>
+        <div className="log-tag-wrapper">Tags: {displayAddedTags()}</div>
         <a
           href={url}
           target="_blank"

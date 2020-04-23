@@ -41,6 +41,7 @@ function ProfilePage() {
     return () => {
       clearLogList();
       clearTagList();
+      clearError();
     };
   }, [0]);
 
