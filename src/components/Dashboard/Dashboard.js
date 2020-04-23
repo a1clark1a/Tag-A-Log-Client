@@ -52,34 +52,6 @@ function Dashboard() {
       userInput: e.currentTarget.value,
     });
   };
-  const onKeyDown = (e) => {
-    const { activeOption, filteredOptions } = search;
-
-    if (e.keyCode === 13) {
-      setSearch({
-        activeOption: 0,
-        showOptions: false,
-        userInput: filteredOptions[activeOption],
-      });
-    } else if (e.keyCode === 38) {
-      if (activeOption === 0) {
-        return;
-      }
-      setSearch({
-        ...search,
-        activeOption: activeOption - 1,
-      });
-    } else if (e.keyCode === 40) {
-      if (activeOption === filteredOptions.length - 1) {
-        console.log(activeOption);
-        return;
-      }
-      setSearch({
-        ...search,
-        activeOption: activeOption + 1,
-      });
-    }
-  };
 
   const searchList = () => {
     if (search.showOptions && search.userInput) {
@@ -104,11 +76,7 @@ function Dashboard() {
           <Link to={`/log`} className="create-log">
             <button>Create Log</button>
           </Link>
-          <SearchBar
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            value={search.userInput}
-          />
+          <SearchBar onChange={onChange} value={search.userInput} />
         </header>
         <div className="search-list list">
           <label className="sort-by-label">

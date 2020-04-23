@@ -23,7 +23,11 @@ const CreateLog = ({
   //refactor into a react component
   const displayAddedTags = () => {
     return tagList.map((tag, i) => {
-      return <div key={i}>{tag}</div>;
+      return (
+        <div className="tag" key={i}>
+          {tag}
+        </div>
+      );
     });
   };
 
@@ -70,7 +74,7 @@ const CreateLog = ({
           </button>
         </div>
         <label>Tags: up to 5 </label>
-        <div>{displayAddedTags()}</div>
+        <div className="added-tags-wrapper">{displayAddedTags()}</div>
         <label>Add a url:</label>
         <input
           name="url"

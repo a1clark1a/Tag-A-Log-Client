@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import "./SearchBar.css";
 
-function SearchBar({ onChange, onKeyDown, value }) {
+function SearchBar({ onChange, value }) {
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={(e) => e.preventDefault()}>
       <label className="searchbar-label">
         Search Log:{" "}
         <select>
@@ -13,10 +13,9 @@ function SearchBar({ onChange, onKeyDown, value }) {
         </select>
       </label>
       <input
-        type="Search"
+        type="text"
         className="search-input"
         onChange={onChange}
-        onKeyDown={onKeyDown}
         value={value}
       />
     </form>
