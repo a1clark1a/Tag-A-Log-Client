@@ -75,6 +75,19 @@ function LandingPage() {
         setError(res.error.message);
       });
   };
+
+  const demo = () => {
+    AuthApiService.postLoginUser({
+      user_name: "demo",
+      password: "password",
+    })
+      .then((res) => {
+        TokenService.saveAuthToken(res.authToken);
+        history.push("/dashboard");
+      })
+      .catch((res) => setError(res.error.message));
+  };
+
   return (
     <section className="landing-sect">
       <header role="banner" className="banner">
@@ -114,6 +127,7 @@ function LandingPage() {
           Login
         </button>
         {active === "logIn" && <LogIn handleSubmit={(e) => handleLogin(e)} />}
+        <button onClick={demo}>Demo</button>
       </article>
     </section>
   );

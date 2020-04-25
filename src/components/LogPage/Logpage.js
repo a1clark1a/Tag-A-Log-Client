@@ -16,17 +16,17 @@ function LogPage(props) {
   const context = useContext(Context);
   const history = useHistory();
   const [edit, allowEdit] = useState(false);
+  const [logsTags, setLogsTags] = useState([]);
   const { logId } = props.match.params;
   const {
     log,
     setLog,
-    error,
-    setError,
     tagList,
     setTagList,
+    error,
+    setError,
     clearError,
     clearLog,
-    clearTagList,
   } = context;
 
   useEffect(() => {
@@ -36,15 +36,14 @@ function LogPage(props) {
         .then(setLog)
         .catch((res) => setError(res.error.message));
       LogsService.getLogsListOfTags(logId)
+        .then(setLogsTags)
+        .catch((res) => setError(res.error.message));
+      TagsService.getUserTags()
         .then(setTagList)
-        .catch((res) => {
-          console.log(res);
-          setError(res.error.message);
-        });
+        .catch((res) => setError(res.error.message));
     }
     return () => {
       clearLog();
-      clearTagList();
       clearError();
     };
   }, []);
@@ -52,7 +51,7 @@ function LogPage(props) {
   const handleCreateLog = (e, addedTagList = []) => {
     clearError();
     e.preventDefault();
-    console.log(addedTagList);
+
     const { log_name, url, description } = e.target;
     const newLog = {
       log_name: log_name.value,
@@ -71,9 +70,21 @@ function LogPage(props) {
       .catch((res) => setError(res.error.message));
   };
 
-  const handleEditLog = (e) => {
+  const handleEditLog = (e, addedTagList = [], tagsToDelete = []) => {
     clearError();
     e.preventDefault();
+
+    if (tagsToDelete.length > 0) {
+      tagsToDelete.forEach((tagToDelete) => {
+        let tagObj = logsTags.find((tag) => tag.tag_name === tagToDelete);
+        if (tagObj) {
+          LogsService.deleteALogTag(logId, tagObj.id).catch((res) =>
+            setError(res.error.message)
+          );
+        }
+      });
+    }
+
     const { log_name, url, description, num_tags } = e.target;
     const newLog = {
       log_name: log_name.value,
@@ -87,6 +98,7 @@ function LogPage(props) {
         log_name.value = "";
         description.value = "";
         url.value = "";
+        handleLogTagRelation(addedTagList, logId);
         history.push(`/log/${logId}`);
         allowEdit(false);
       })
@@ -95,17 +107,45 @@ function LogPage(props) {
 
   const handleLogTagRelation = (addedTagList = [], logId) => {
     if (addedTagList.length > 0) {
-      addedTagList.forEach((tag) => {
+      let addedTag = [];
+      addedTagList.forEach((tagName) => {
         const newTag = {
-          tag_name: tag,
+          tag_name: tagName,
           log_id: logId,
         };
-        TagsService.postTag(newTag)
-          .then((tag) => {
-            console.log(tag);
-          })
-          .catch((res) => setError(res.error.message));
+        let exist = false;
+        let newLogTag = {};
+        tagList.forEach((tag) => {
+          for (const [key, value] of Object.entries(tag)) {
+            if (value === tagName) {
+              addedTag.push(tag);
+              newLogTag = {
+                log_id: logId,
+                tag_id: tag.id,
+              };
+              exist = true;
+              break;
+            }
+          }
+        });
+        console.log(exist);
+        if (exist) {
+          LogsService.tagALog(newLogTag)
+            .then(() => {})
+            .catch((res) => setError(res.error.message));
+          setLogsTags([...addedTag]);
+        } else {
+          TagsService.postTag(newTag)
+            .then((tag) => {
+              addedTag.push(tag);
+              console.log(addedTag);
+              setLogsTags([...logsTags, ...addedTag]);
+            })
+            .catch((res) => setError(res.error.message));
+        }
       });
+    } else {
+      setLogsTags([]);
     }
   };
 
@@ -115,9 +155,12 @@ function LogPage(props) {
         <DisplayLog
           log_name={log.log_name}
           url={log.url}
-          tagList={tagList}
+          tagList={logsTags}
           description={log.description}
-          onClick={() => allowEdit(true)}
+          onClick={() => {
+            clearError();
+            allowEdit(true);
+          }}
         />
       ) : (
         <CreateLog
@@ -128,6 +171,7 @@ function LogPage(props) {
           num_tags={log.num_tags}
           handleEditLog={handleEditLog}
           handleCreateLog={handleCreateLog}
+          currentTags={logsTags}
         />
       )}
       <div role="alert">

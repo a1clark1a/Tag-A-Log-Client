@@ -10,12 +10,13 @@ const DisplayLog = ({
   tagList = [],
   onClick,
 }) => {
-  console.log(tagList);
-
   const displayAddedTags = () => {
     return tagList.map((tag, i) => {
-      console.log(tag);
-      return <h3 key={i}>{tag.tag_name}</h3>;
+      return (
+        <div className={"tag-box"} key={i}>
+          <h3>{tag.tag_name}</h3>
+        </div>
+      );
     });
   };
 

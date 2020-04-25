@@ -2,11 +2,15 @@ import React from "react";
 
 import "./DisplayTagList.css";
 
-const DisplayTagList = ({ tag }) => {
+const DisplayTagList = ({ tag, currentPage, onDelete }) => {
   return (
     <div className="log-wrapper log">
       <h3 className="log-name log">{tag.tag_name}</h3>
-      <button className="log-delete log">X</button>
+      {currentPage !== "dash" && (
+        <button className="log-delete log" onClick={() => onDelete(tag.id)}>
+          X
+        </button>
+      )}
     </div>
   );
 };

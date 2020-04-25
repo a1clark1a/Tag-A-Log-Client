@@ -3,14 +3,14 @@ import TokenService from "./token-service";
 
 const LogsService = {
   async getLogs() {
-    return await fetch(`${config.API_ENDPOINT}/logs`, {
+    const res = await fetch(`${config.API_ENDPOINT}/logs`, {
       method: "GET",
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => {
-      return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
-    });
+    }); //.then((res) => {
+    return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
+    //   });
   },
 
   getUsersLogs() {
@@ -42,6 +42,20 @@ const LogsService = {
     }).then((res) => {
       return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
     });
+  },
+
+  async getLogTagsRelation(logsId, tagsId) {
+    const res = await fetch(
+      `${config.API_ENDPOINT}/relations/${logsId}/${tagsId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `bearer ${TokenService.getAuthToken()}`,
+        },
+      }
+    );
+
+    return !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json();
   },
 
   postLog(newLog) {

@@ -53,7 +53,7 @@ const TagsService = {
     });
   },
 
-  deleteLog(tagsId) {
+  deleteTag(tagsId) {
     return fetch(`${config.API_ENDPOINT}/tags/${tagsId}`, {
       method: "DELETE",
       headers: {

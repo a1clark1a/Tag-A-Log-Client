@@ -27,6 +27,9 @@ function ProfilePage() {
     clearError,
     clearLogList,
     clearTagList,
+
+    deleteLogsFromList,
+    deleteTagsFromList,
   } = context;
 
   useEffect(() => {
@@ -40,20 +43,37 @@ function ProfilePage() {
 
     return () => {
       clearLogList();
-      clearTagList();
       clearError();
     };
   }, [0]);
 
+  const onDeleteLog = (logId) => {
+    console.log("deleting", logId);
+    LogsService.deleteLog(logId)
+      .then(() => {
+        deleteLogsFromList(logId);
+      })
+      .catch((res) => setError(res.error.message));
+  };
+
+  const onDeleteTag = (tagId) => {
+    console.log("deleting", tagId);
+    TagsService.deleteTag(tagId)
+      .then(() => {
+        deleteTagsFromList(tagId);
+      })
+      .catch((res) => setError(res.error.message));
+  };
+
   const displayLogs = () => {
     return logList.map((log, i) => {
-      return <DisplayLogList key={i} log={log} />;
+      return <DisplayLogList key={i} log={log} onDelete={onDeleteLog} />;
     });
   };
 
   const displayTags = () => {
     return tagList.map((tag, i) => {
-      return <DisplayTagList key={i} tag={tag} />;
+      return <DisplayTagList key={i} tag={tag} onDelete={onDeleteTag} />;
     });
   };
 

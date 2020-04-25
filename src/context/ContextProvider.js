@@ -18,6 +18,9 @@ const Context = React.createContext({
   clearLogList: () => {},
   clearTag: () => {},
   clearTagList: () => {},
+
+  deleteLogsFromList: () => {},
+  deleteTagsFromList: () => {},
 });
 
 export default Context;
@@ -49,6 +52,20 @@ export function LogProvider(props) {
     setTagList([]);
   };
 
+  const deleteLogsFromList = (logId) => {
+    const newLogList = logList.filter((log) => {
+      return log.id !== logId;
+    });
+    setLogList(newLogList);
+  };
+
+  const deleteTagsFromList = (tagId) => {
+    const newTagList = tagList.filter((tag) => {
+      return tag.id !== tagId;
+    });
+    setTagList(newTagList);
+  };
+
   const contextValue = {
     error,
     log,
@@ -67,6 +84,9 @@ export function LogProvider(props) {
     clearLogList,
     clearTag,
     clearTagList,
+
+    deleteLogsFromList,
+    deleteTagsFromList,
   };
 
   return (
