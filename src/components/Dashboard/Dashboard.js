@@ -112,7 +112,6 @@ function Dashboard() {
     }
   };
 
-  console.log(search.filteredOptions);
   return (
     <section className="app-sect">
       <section className="dashboard-sect">

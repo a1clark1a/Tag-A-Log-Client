@@ -42,7 +42,7 @@ const CreateLog = ({
       });
     }
 
-    if (tagList.length <= 0 && !edit) {
+    if (history.action === "POP") {
       history.push("/dashboard");
     }
   }, []);

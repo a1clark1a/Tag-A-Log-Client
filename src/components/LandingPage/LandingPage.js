@@ -67,6 +67,7 @@ function LandingPage() {
               history.push("/dashboard");
             })
             .catch((res) => {
+              console.log(res);
               setError(res.error.message);
             });
         }
@@ -79,7 +80,7 @@ function LandingPage() {
   const demo = () => {
     AuthApiService.postLoginUser({
       user_name: "demo",
-      password: "password",
+      password: "Password123!",
     })
       .then((res) => {
         TokenService.saveAuthToken(res.authToken);
