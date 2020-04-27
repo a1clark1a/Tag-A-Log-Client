@@ -40,6 +40,7 @@ const DisplayLogList = ({ log, onDelete, currentPage }) => {
     <div className="log-wrapper log">
       <Link to={`/log/${log.id}`}>
         <h3 className="log-name log">{log.log_name}</h3>
+        <code>{log.date_created}</code>
         <div className="log-tag-wrapper">Tags: {displayAddedTags()}</div>
       </Link>
       {currentPage !== "dash" && (

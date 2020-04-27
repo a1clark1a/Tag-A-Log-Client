@@ -27,6 +27,7 @@ function LogPage(props) {
     setError,
     clearError,
     clearLog,
+    deleteLogsFromList,
   } = context;
 
   useEffect(() => {
@@ -149,18 +150,26 @@ function LogPage(props) {
     }
   };
 
+  const handleOnDeleteLog = (logId) => {
+    LogsService.deleteLog(logId)
+      .then(() => {
+        deleteLogsFromList(logId);
+        history.push("/dashboard");
+      })
+      .catch((res) => setError(res.error.message));
+  };
+
   return (
     <section className="log-sect">
       {!edit && logId ? (
         <DisplayLog
-          log_name={log.log_name}
-          url={log.url}
+          log={log}
           tagList={logsTags}
-          description={log.description}
           onClick={() => {
             clearError();
             allowEdit(true);
           }}
+          onDelete={handleOnDeleteLog}
         />
       ) : (
         <CreateLog

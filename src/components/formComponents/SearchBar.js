@@ -8,6 +8,7 @@ function SearchBar({ onChange, value, onSelect, searchType }) {
       <label className="searchbar-label">
         Search Log:{" "}
         <select onChange={onSelect} value={searchType}>
+          <option>Choose type: </option>
           <option value="name">Name</option>
           <option value="tag">Tag</option>
         </select>

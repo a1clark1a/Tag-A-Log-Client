@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 //component
 import DisplayLogList from "../DisplayLogList/DisplayLogList";
 import DisplayTagList from "../DisplayTagList/DisplayTagList";
+import SortBy from "../formComponents/SortBy";
 
 //service
 import Context from "../../context/ContextProvider";
@@ -14,6 +15,7 @@ import "./ProfilePage.css";
 
 function ProfilePage() {
   const [active, setActive] = useState("Logs");
+  const [sortBy, setSortBy] = useState();
   const context = useContext(Context);
   const {
     error,
@@ -66,7 +68,18 @@ function ProfilePage() {
   };
 
   const displayLogs = () => {
-    return logList.map((log, i) => {
+    const logs = logList;
+    if (sortBy === "descending") {
+      logs.sort((logA, logB) => {
+        return new Date(logA.date_created) - new Date(logB.date_created);
+      });
+    }
+    if (sortBy === "ascending") {
+      logs.sort((logA, logB) => {
+        return new Date(logB.date_created) - new Date(logA.date_created);
+      });
+    }
+    return logs.map((log, i) => {
       return <DisplayLogList key={i} log={log} onDelete={onDeleteLog} />;
     });
   };
@@ -84,14 +97,12 @@ function ProfilePage() {
         <button onClick={() => setActive("Tags")}>Tags</button>
       </header>
       <div className="prof-list list">
-        <label className="sort">
-          Sort by:{" "}
-          <select>
-            <option>Date created</option>
-            <option>Ascending</option>
-            <option>Descending</option>
-          </select>
-        </label>
+        {active === "Logs" && (
+          <SortBy
+            sortBy={sortBy}
+            onSelect={(e) => setSortBy(e.currentTarget.value)}
+          />
+        )}
         {active === "Logs" ? displayLogs() : displayTags()}
       </div>
     </section>

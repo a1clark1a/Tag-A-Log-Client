@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "../formComponents/SearchBar";
 import DisplayLogList from "../DisplayLogList/DisplayLogList";
 import DisplayTagList from "../DisplayTagList/DisplayTagList";
+import SortBy from "../formComponents/SortBy";
 
 //service
 import LogsService from "../../service/log-service";
@@ -15,8 +16,9 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const context = useContext(Context);
-  const [searchType, setSearchType] = useState("name");
-  const [currentPage, setCurrentPage] = useState("dash");
+  const [searchType, setSearchType] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [currentPage, setCurrentPage] = useState("");
   const {
     error,
     logList,
@@ -36,6 +38,7 @@ function Dashboard() {
 
   useEffect(() => {
     clearError();
+    setCurrentPage("dash");
 
     LogsService.getLogs()
       .then(setLogList)
@@ -91,6 +94,17 @@ function Dashboard() {
   const searchList = () => {
     if (search.showOptions && search.userInput) {
       if (search.filteredOptions.length > 0 && searchType === "name") {
+        if (sortBy === "descending") {
+          search.filteredOptions.sort((logA, logB) => {
+            return new Date(logA.date_created) - new Date(logB.date_created);
+          });
+        }
+        if (sortBy === "ascending") {
+          search.filteredOptions.sort((logA, logB) => {
+            return new Date(logB.date_created) - new Date(logA.date_created);
+          });
+        }
+
         return search.filteredOptions.map((log, i) => {
           return <DisplayLogList key={i} log={log} currentPage={currentPage} />;
         });
@@ -136,12 +150,10 @@ function Dashboard() {
         </header>
         <div className="search-list list">
           <label className="sort-by-label">
-            Sort by:{" "}
-            <select>
-              <option>Date created</option>
-              <option>Ascending</option>
-              <option>Descending</option>
-            </select>
+            <SortBy
+              sortBY={sortBy}
+              onSelect={(e) => setSortBy(e.currentTarget.value)}
+            />
           </label>
           <div role="alert">
             {error && <p className="error-message">{error}</p>}
