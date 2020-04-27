@@ -17,15 +17,15 @@ function Navbar() {
   return (
     <nav>
       <Link to={"/dashboard"} onClick={smoothScrollToTop()}>
-        Dashboard
+        <h2>Dashboard</h2>
       </Link>
 
       <Link to={"/profilepage"} onClick={smoothScrollToTop()}>
-        Profile
+        <h2>Profile</h2>
       </Link>
 
       <Link onClick={handleLogOut} to={"/"}>
-        Log Out
+        <h2>Log Out</h2>
       </Link>
     </nav>
   );

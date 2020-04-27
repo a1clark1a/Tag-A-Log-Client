@@ -9,9 +9,29 @@
 
 .searchbar-label {
   font-size: 1.5rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .search-form > input {
+  border: 1px solid black;
+  border-radius: 3px;
   height: 50px;
+}
+
+.search-h1 {
+  margin: 0 1rem 0 0;
+  font-size: 1.5rem;
+}
+
+.search-select {
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .search-form {
+    max-width: none;
+  }
 }

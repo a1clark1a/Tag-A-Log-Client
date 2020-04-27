@@ -9,13 +9,18 @@ nav {
   min-height: 50px;
   height: 10%;
   z-index: 100;
-  background-color: #dbecfa;
+  background-color: #ffd65b;
 }
 
 nav > a {
   margin: 0 2rem;
   text-decoration: none;
   color: black;
+  font-size: 1.2rem;
+}
+
+nav > a > h2 {
+  margin: 0;
   font-size: 1.2rem;
 }
 

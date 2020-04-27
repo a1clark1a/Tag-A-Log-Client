@@ -12,11 +12,12 @@ import LogsService from "../../service/log-service";
 import TagsService from "../../service/tag-service";
 import Context from "../../context/ContextProvider";
 
+import logo from "../../Icon/Logo.png";
 import "./Dashboard.css";
 
 function Dashboard() {
   const context = useContext(Context);
-  const [searchType, setSearchType] = useState("");
+  const [searchType, setSearchType] = useState("name");
   const [sortBy, setSortBy] = useState("");
   const [currentPage, setCurrentPage] = useState("");
   const {
@@ -130,9 +131,12 @@ function Dashboard() {
     <section className="app-sect">
       <section className="dashboard-sect">
         <header className="dash-header">
-          <Link to={`/log`} className="create-log">
-            <button>Create Log</button>
-          </Link>
+          <div className="create-log">
+            <Link to={`/log`}>
+              <img className="logo" src={logo} alt={"create-log-button"} />
+            </Link>
+            <h2 className="create-log-h2">Create Log</h2>
+          </div>
           <SearchBar
             onChange={onChange}
             onSelect={(e) => {
@@ -155,7 +159,7 @@ function Dashboard() {
               onSelect={(e) => setSortBy(e.currentTarget.value)}
             />
           </label>
-          <div role="alert">
+          <div role="alert" className="error-wrapper">
             {error && <p className="error-message">{error}</p>}
           </div>
           {searchList()}

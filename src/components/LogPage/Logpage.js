@@ -183,7 +183,7 @@ function LogPage(props) {
           currentTags={logsTags}
         />
       )}
-      <div role="alert">
+      <div role="alert" className="error-wrapper">
         {error && <p className="error-message">{error}</p>}
       </div>
     </section>

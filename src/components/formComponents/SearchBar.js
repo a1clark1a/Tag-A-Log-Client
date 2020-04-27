@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./SearchBar.css";
 
@@ -6,9 +6,12 @@ function SearchBar({ onChange, value, onSelect, searchType }) {
   return (
     <form className="search-form" onSubmit={(e) => e.preventDefault()}>
       <label className="searchbar-label">
-        Search Log:{" "}
-        <select onChange={onSelect} value={searchType}>
-          <option>Choose type: </option>
+        <h1 className="search-h1">Search Log:</h1>
+        <select
+          className="search-select"
+          onChange={onSelect}
+          value={searchType}
+        >
           <option value="name">Name</option>
           <option value="tag">Tag</option>
         </select>

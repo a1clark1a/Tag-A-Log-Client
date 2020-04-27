@@ -16,17 +16,23 @@
 
 .search-list {
   border: 1px solid black;
-  padding: 1% 2%;
+  border-radius: 3px;
 }
 
 .dash-header {
-  background-color: white;
+  background-color: #f4f4f4;
   display: flex;
   margin-bottom: 5%;
 }
 
 .create-log {
-  max-width: 120px;
+  text-decoration: none;
+}
+
+.create-log-h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: black;
 }
 
 .create-log > button {
@@ -40,8 +46,9 @@
   box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.22) !important;
 }
 
+.logo {
+  width: 100px;
+}
+
 @media screen and (max-width: 500px) {
-  .app-sect {
-    margin-top: 15%;
-  }
 }

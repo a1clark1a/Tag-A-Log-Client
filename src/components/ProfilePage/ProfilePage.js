@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 //component
 import DisplayLogList from "../DisplayLogList/DisplayLogList";
@@ -45,9 +44,10 @@ function ProfilePage() {
 
     return () => {
       clearLogList();
+      clearTagList();
       clearError();
     };
-  }, [0]);
+  }, []);
 
   const onDeleteLog = (logId) => {
     console.log("deleting", logId);

@@ -12,6 +12,7 @@
 
 .log-tag-wrapper {
   display: flex;
+  overflow: scroll;
 }
 
 .tag-box {

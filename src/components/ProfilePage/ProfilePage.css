@@ -8,7 +8,8 @@
 }
 
 .button-grp {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .button-grp > button {
@@ -20,7 +21,6 @@
 
 .list {
   border: 1px solid black;
-  margin: 1rem;
   padding: 1rem;
 }
 
@@ -32,4 +32,10 @@
   text-decoration: none;
   color: black;
   width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .button-grp {
+    margin-top: 3rem;
+  }
 }

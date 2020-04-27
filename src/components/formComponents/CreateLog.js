@@ -19,7 +19,7 @@ const CreateLog = ({
 }) => {
   const context = useContext(Context);
   const history = useHistory();
-  const { tagList } = context;
+  const { tagList, setError, clearError } = context;
   const [newLog, setNewLog] = useState({
     log_name: log_name || "",
     url: url || "",
@@ -45,6 +45,9 @@ const CreateLog = ({
     if (history.action === "POP") {
       history.push("/dashboard");
     }
+    return () => {
+      clearError();
+    };
   }, []);
 
   const onChange = (e) => {
@@ -135,6 +138,19 @@ const CreateLog = ({
     });
   };
 
+  const onClickAddTag = (e) => {
+    if (addTagList.length < 5) {
+      //TODO clean the inputted tag or cause an error when wrong tag
+      if (!addTagList.includes(tag)) {
+        setAddTagList((elem) => [...elem, tag]);
+      }
+      setTag("");
+      e.currentTarget.value = "";
+    } else {
+      setError("Can only have upto 5 tags");
+    }
+  };
+
   return (
     <form
       className="log-form"
@@ -173,14 +189,7 @@ const CreateLog = ({
             onKeyDown={onKeyDown}
             value={tag}
           />
-          <button
-            type="button"
-            onClick={(e) => {
-              setAddTagList((elem) => [...elem, tag]);
-              setTag("");
-              e.currentTarget.value = "";
-            }}
-          >
+          <button type="button" onClick={onClickAddTag}>
             add
           </button>
           <div className="added-tags-wrapper">{displayAddedTags()}</div>
