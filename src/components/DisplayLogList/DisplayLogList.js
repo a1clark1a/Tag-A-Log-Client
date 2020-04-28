@@ -11,16 +11,20 @@ const DisplayLogList = ({ log, onDelete, currentPage }) => {
   const context = useContext(Context);
   const { setError, clearError } = context;
   const [logsTags, setLogsTags] = useState([]);
-
+  let updateComponent;
   useEffect(() => {
+    updateComponent = true;
     if (log.id) {
       LogsService.getLogsListOfTags(log.id)
         .then((tags) => {
-          setLogsTags(tags);
+          if (updateComponent) {
+            setLogsTags(tags);
+          }
         })
         .catch((res) => setError(res.error.message));
     }
     return () => {
+      updateComponent = false;
       clearError();
       setLogsTags([]);
     };

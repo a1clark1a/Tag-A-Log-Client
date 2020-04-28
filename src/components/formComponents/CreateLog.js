@@ -62,7 +62,7 @@ const CreateLog = ({
       filteredOptions,
       showOptions: true,
     });
-    setTag(e.currentTarget.value);
+    setTag(userInput.toLowerCase());
   };
 
   const onClick = (e) => {
@@ -71,7 +71,7 @@ const CreateLog = ({
       filteredOptions: [],
       showOptions: false,
     });
-    setTag(e.currentTarget.innerText);
+    setTag(e.currentTarget.innerText.toLowerCase());
   };
 
   const onKeyDown = (e) => {
@@ -139,13 +139,21 @@ const CreateLog = ({
   };
 
   const onClickAddTag = (e) => {
+    console.log(option.filteredOptions);
     if (addTagList.length < 5) {
       //TODO clean the inputted tag or cause an error when wrong tag
+      const constraint = /^[a-z]+$/g;
+      if (!constraint.test(tag)) {
+        setTag("");
+        return setError(
+          "Tag must not have a whitespace, number or special characters"
+        );
+      }
+
       if (!addTagList.includes(tag)) {
         setAddTagList((elem) => [...elem, tag]);
       }
       setTag("");
-      e.currentTarget.value = "";
     } else {
       setError("Can only have upto 5 tags");
     }
