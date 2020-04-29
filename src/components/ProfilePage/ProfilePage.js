@@ -4,6 +4,7 @@ import React, { useState, useContext, useEffect } from "react";
 import DisplayLogList from "../DisplayLogList/DisplayLogList";
 import DisplayTagList from "../DisplayTagList/DisplayTagList";
 import SortBy from "../formComponents/SortBy";
+import Tag from "../Tag/Tag";
 
 //service
 import Context from "../../context/ContextProvider";
@@ -80,23 +81,52 @@ function ProfilePage() {
       });
     }
     return logs.map((log, i) => {
-      return <DisplayLogList key={i} log={log} onDelete={onDeleteLog} />;
+      return (
+        <DisplayLogList
+          key={i}
+          log={log}
+          onDelete={onDeleteLog}
+          currentPage={"Profile"}
+        />
+      );
     });
   };
-
+  /*
   const displayTags = () => {
     return tagList.map((tag, i) => {
       return <DisplayTagList key={i} tag={tag} onDelete={onDeleteTag} />;
+    });
+  }; */
+
+  const displayTags = () => {
+    return tagList.map((tag, i) => {
+      return (
+        <Tag
+          key={i}
+          tag_name={tag.tag_name}
+          onDeleteTag={() => onDeleteTag(tag.id)}
+        />
+      );
     });
   };
 
   return (
     <section className="profile-sect">
       <header className="button-grp">
-        <button onClick={() => setActive("Logs")}>Logs</button>
-        <button onClick={() => setActive("Tags")}>Tags</button>
+        <button
+          className={active === "Logs" ? "active" : ""}
+          onClick={() => setActive("Logs")}
+        >
+          Logs
+        </button>
+        <button
+          className={active === "Tags" ? "active" : ""}
+          onClick={() => setActive("Tags")}
+        >
+          Tags
+        </button>
       </header>
-      <div className="prof-list list">
+      <div className={`prof-${active} list`}>
         {active === "Logs" && (
           <SortBy
             sortBy={sortBy}

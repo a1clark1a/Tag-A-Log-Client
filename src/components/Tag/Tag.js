@@ -1,14 +1,21 @@
 import React from "react";
 
-const Tag = ({ tag_name, onDeleteTag }) => {
+import "./Tag.css";
+
+const Tag = ({ tag_name, onDeleteTag, currentPage, color }) => {
   return (
-    <div className="tag" key={tag_name}>
-      <h4>{tag_name}</h4>
-      {
-        <button type="button" onClick={onDeleteTag}>
+    <div className={`tag-box tag ${color}`}>
+      <h3 className="tag">{tag_name}</h3>
+      {currentPage === undefined && (
+        <button
+          type="button"
+          className="tag-delete tag"
+          aria-label="delete"
+          onClick={onDeleteTag}
+        >
           X
         </button>
-      }
+      )}
     </div>
   );
 };

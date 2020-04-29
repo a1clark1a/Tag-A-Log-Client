@@ -12,16 +12,11 @@
 
 .log-tag-wrapper {
   display: flex;
-  overflow: scroll;
+  overflow: hidden;
 }
 
-.tag-box {
-  display: flex;
-  border: 1px solid black;
-  margin: 0 0.5em;
-}
-
-.tag-box > h3 {
-  padding: 0 0.5em;
-  margin: 0;
+@media screen and (max-width: 500px) {
+  .log-tag-wrapper {
+    overflow: scroll;
+  }
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 //service
 import LogsService from "../../service/log-service";
 import Context from "../../context/ContextProvider";
+import Tag from "../Tag/Tag";
 
 import "./DisplayLogList.css";
 
@@ -12,6 +13,7 @@ const DisplayLogList = ({ log, onDelete, currentPage }) => {
   const { setError, clearError } = context;
   const [logsTags, setLogsTags] = useState([]);
   let updateComponent;
+
   useEffect(() => {
     updateComponent = true;
     if (log.id) {
@@ -32,11 +34,7 @@ const DisplayLogList = ({ log, onDelete, currentPage }) => {
 
   const displayAddedTags = () => {
     return logsTags.map((tag, i) => {
-      return (
-        <div className={"tag-box"} key={i}>
-          <h3>{tag.tag_name}</h3>
-        </div>
-      );
+      return <Tag key={i} tag_name={tag.tag_name} currentPage={currentPage} />;
     });
   };
 
@@ -46,10 +44,17 @@ const DisplayLogList = ({ log, onDelete, currentPage }) => {
         <h3 className="log-name log">{log.log_name}</h3>
         <code>{log.date_created}</code>
 
-        <div className="log-tag-wrapper">Tags: {displayAddedTags()}</div>
+        <div className="log-tag-wrapper">
+          <span>Tags:</span>
+          {displayAddedTags()}
+        </div>
       </Link>
       {currentPage !== "dash" && (
-        <button className="log-delete log" onClick={() => onDelete(log.id)}>
+        <button
+          className="log-delete log"
+          aria-label="delete"
+          onClick={() => onDelete(log.id)}
+        >
           X
         </button>
       )}

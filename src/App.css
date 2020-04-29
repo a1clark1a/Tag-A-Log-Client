@@ -1,3 +1,7 @@
+body {
+  font-family: Cairo;
+}
+
 main {
   position: relative;
   min-height: 100vh;
@@ -28,12 +32,11 @@ button,
   background-color: white;
 }
 
-.list > a:hover,
-.item:hover {
-  background-color: #81ebc2;
+.tag {
+  font-family: Kanit !important;
+  font-weight: 500;
 }
 
-.list > a:nth-child(even):hover,
-.item:nth-child(even):hover {
-  background-color: rgb(143, 245, 245);
+.log {
+  font-family: Cairo !important;
 }

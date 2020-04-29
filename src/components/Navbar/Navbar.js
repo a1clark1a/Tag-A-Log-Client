@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import TokenService from "../../service/token-service";
@@ -6,6 +6,11 @@ import TokenService from "../../service/token-service";
 import "./Navbar.css";
 
 function Navbar() {
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    setActive(window.location.pathname);
+  });
   const smoothScrollToTop = () => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -16,11 +21,19 @@ function Navbar() {
 
   return (
     <nav>
-      <Link to={"/dashboard"} onClick={smoothScrollToTop()}>
+      <Link
+        className={active === "/dashboard" ? "active" : ""}
+        to={"/dashboard"}
+        onClick={smoothScrollToTop()}
+      >
         <h2>Dashboard</h2>
       </Link>
 
-      <Link to={"/profilepage"} onClick={smoothScrollToTop()}>
+      <Link
+        className={active === "/profilepage" ? "active" : ""}
+        to={"/profilepage"}
+        onClick={smoothScrollToTop()}
+      >
         <h2>Profile</h2>
       </Link>
 

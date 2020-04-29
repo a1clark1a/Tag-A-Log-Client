@@ -1,0 +1,32 @@
+.tag-box {
+  display: flex;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin: 0 0.5em;
+  background-color: #f68e56;
+}
+
+.tag-box > h3 {
+  padding: 0 0.5em;
+  margin: 0;
+}
+
+.tag-delete {
+  border-radius: 5px;
+  border: 2px solid #7cc576;
+  background-color: white;
+  font-weight: bolder;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.tag-delete:hover,
+.tag-delete:focus {
+  background-color: #7cc576;
+  color: white;
+}
+
+.tag-delete:focus {
+  outline: 0.5px solid #7cc576;
+  box-shadow: 00 0 0 1pt #7cc576;
+}

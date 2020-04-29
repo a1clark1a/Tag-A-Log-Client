@@ -1,7 +1,7 @@
 .app-sect {
   display: flex;
   flex-direction: column;
-  margin: 5rem 5% 0 5%;
+  margin: 3rem 5% 0 5%;
   min-height: 100vh;
   padding-bottom: 50px;
 }
@@ -33,17 +33,9 @@
   margin: 0;
   font-size: 1.2rem;
   color: black;
-}
-
-.create-log > button {
-  height: 100%;
-  font-size: 2rem;
-  background-color: #d11f31;
-  border: 1px solid #a50313;
-  border-radius: 4px;
-  -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.22) !important;
-  -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.22) !important;
-  box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.22) !important;
+  font-family: Kanit;
+  font-weight: 600;
+  margin-top: -10px;
 }
 
 .logo {
