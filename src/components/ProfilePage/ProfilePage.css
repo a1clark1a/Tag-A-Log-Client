@@ -33,6 +33,7 @@
 
 .button-grp > .active {
   background-color: #7cc576;
+  background-image: linear-gradient(to bottom left, #7cc576, #2b4d28);
   color: white;
 }
 
@@ -47,13 +48,14 @@
   outline: 0.5px solid #7cc576;
   box-shadow: 00 0 0 1pt #7cc576;
   background-color: #7cc576;
+  background-image: linear-gradient(to bottom left, #7cc576, #2b4d28);
   color: white;
 }
 
 .button-grp > button:hover {
   background-color: #7cc576;
+  background-image: linear-gradient(to bottom left, #7cc576, #2b4d28);
   color: white;
-  transition: 0.5s;
 }
 
 .button-grp > button .list {
