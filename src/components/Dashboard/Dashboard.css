@@ -64,6 +64,10 @@
     width: 50%;
     margin: auto;
   }
+  .name-search-list {
+    width: 70%;
+    margin: auto;
+  }
 }
 
 @media screen and (min-width: 800px) {
