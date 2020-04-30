@@ -64,3 +64,14 @@
     margin: auto;
   }
 }
+
+@media screen and (min-width: 800px) {
+  .logo {
+    width: 120px;
+  }
+
+  .create-log-h2 {
+    text-align: center;
+    font-size: 1.4rem;
+  }
+}
