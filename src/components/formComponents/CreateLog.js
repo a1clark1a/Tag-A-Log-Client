@@ -41,16 +41,17 @@ const CreateLog = ({
         setAddTagList((addTagList) => [...addTagList, tag.tag_name]);
       });
     }
-
-    if (history.action === "POP") {
+    if (history.action === "POP" && history.location.pathname === "/log") {
       history.push("/dashboard");
     }
+
     return () => {
       clearError();
     };
   }, []);
 
   const onChange = (e) => {
+    clearError();
     const userInput = e.currentTarget.value;
 
     const filteredOptions = tagList.filter(
@@ -60,12 +61,13 @@ const CreateLog = ({
     setOption({
       activeOption: 0,
       filteredOptions,
-      showOptions: true,
+      showOptions: userInput !== "" ? true : false,
     });
     setTag(userInput.toLowerCase());
   };
 
   const onClick = (e) => {
+    clearError();
     setOption({
       activeOption: 0,
       filteredOptions: [],
@@ -75,8 +77,8 @@ const CreateLog = ({
   };
 
   const onKeyDown = (e) => {
+    clearError();
     const { activeOption, filteredOptions } = option;
-
     if (e.keyCode === 13) {
       setOption({
         ...option,
@@ -108,9 +110,16 @@ const CreateLog = ({
       if (option.filteredOptions.length > 0) {
         return option.filteredOptions.map((tag, i) => {
           return (
-            <p key={i} onClick={onClick}>
+            <div
+              className={`options-tag ${
+                option.activeOption === i ? "option-active" : ""
+              }`}
+              key={i}
+              onClick={onClick}
+              tabIndex={i + 1}
+            >
               {tag.tag_name}
-            </p>
+            </div>
           );
         });
       } else {
@@ -120,6 +129,7 @@ const CreateLog = ({
   };
 
   const onDeleteTag = (tagName) => {
+    clearError();
     const newLogsTags = addTagList.filter((tag) => {
       if (tag !== tagName) {
         return tag;
@@ -139,14 +149,12 @@ const CreateLog = ({
   };
 
   const onClickAddTag = (e) => {
-    console.log(option.filteredOptions);
     if (addTagList.length < 5) {
-      //TODO clean the inputted tag or cause an error when wrong tag
       const constraint = /^[a-z]+$/g;
-      if (!constraint.test(tag)) {
+      if (!constraint.test(tag) || tag.length > 10) {
         setTag("");
         return setError(
-          "Tag must not have a whitespace, number or special characters"
+          "Tag must not have a whitespace, number or special characters and not longer than 10 letters"
         );
       }
 
@@ -154,6 +162,11 @@ const CreateLog = ({
         setAddTagList((elem) => [...elem, tag]);
       }
       setTag("");
+      setOption({
+        activeOption: 0,
+        filteredOptions: [],
+        showOptions: false,
+      });
     } else {
       setError("Can only have upto 5 tags");
     }
@@ -169,7 +182,7 @@ const CreateLog = ({
       }
     >
       <fieldset className="log-fieldset">
-        <label>Name of log: </label>
+        <label className=" label create-log-name">Name of Log: </label>
         <input
           name="log_name"
           id="log_name"
@@ -185,25 +198,34 @@ const CreateLog = ({
           }
           required
         />
-        <label>Add a tag: </label>
+        <label className=" label ">Add a Tag: </label>
         <div className="add-tag-container">
-          <input
-            type="text"
-            name="tag"
-            id="tag"
-            aria-label="tag"
-            autoComplete="off"
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            value={tag}
-          />
-          <button type="button" onClick={onClickAddTag}>
-            add
+          <div>
+            <input
+              type="text"
+              name="tag"
+              id="tag"
+              aria-label="tag"
+              autoComplete="off"
+              onChange={onChange}
+              onKeyDown={onKeyDown}
+              value={tag}
+            />
+            <div
+              className={`tag-options-wrapper ${
+                option.showOptions ? "addBorder" : ""
+              }`}
+            >
+              {displayOptionTags()}
+            </div>
+          </div>
+          <button className="btn-add-tag" type="button" onClick={onClickAddTag}>
+            Add
           </button>
-          <div className="added-tags-wrapper">{displayAddedTags()}</div>
         </div>
-        <div>{displayOptionTags()}</div>
-        <label>Add a url:</label>
+
+        <div className="added-tags-wrapper">{displayAddedTags()}</div>
+        <label className="label">Add a URL:</label>
         <input
           name="url"
           id="url"
@@ -217,6 +239,7 @@ const CreateLog = ({
             })
           }
         />
+        <label className="label">Add Info:</label>
         <textarea
           name="description"
           id="description"
@@ -231,11 +254,11 @@ const CreateLog = ({
           required
         />
         {edit ? (
-          <button className="create-log" type="submit">
+          <button className="btn-edit-log" type="submit">
             Edit
           </button>
         ) : (
-          <button name="log-form" className="edit-log" type="submit">
+          <button name="log-form" className="btn-create-log" type="submit">
             Create
           </button>
         )}

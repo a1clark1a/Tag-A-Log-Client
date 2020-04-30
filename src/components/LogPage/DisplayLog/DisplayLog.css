@@ -1,13 +1,36 @@
+.log-article {
+  display: block;
+}
+
 .log-div {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   padding: 1em;
   margin-bottom: 1em;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .disp-log-name {
   font-size: 2em;
+  margin: 2rem 0 0 0;
+  overflow: hidden;
+  line-height: 50px;
+}
+
+.log-url {
+  margin-top: -5px;
+  line-height: 10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.disp-log-date {
+  display: block;
+  margin-top: -5px;
+  line-height: 20px;
+  margin-bottom: 10px;
 }
 
 .log-tag-wrapper {
@@ -15,8 +38,30 @@
   overflow: hidden;
 }
 
+.btn-grp-log {
+  margin-top: 0 !important;
+}
+
+.disp-log-header {
+  margin: 0;
+  font-size: 19px;
+}
+
+.disp-tags {
+  margin-top: -5px;
+}
+
+.disp-log-desc {
+  font-weight: 600;
+  margin: 0;
+}
+
 @media screen and (max-width: 500px) {
   .log-tag-wrapper {
+    overflow: scroll;
+  }
+
+  .disp-log-name {
     overflow: scroll;
   }
 }

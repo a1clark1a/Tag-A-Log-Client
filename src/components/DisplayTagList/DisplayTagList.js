@@ -1,11 +1,13 @@
 import React from "react";
 
+import Tag from "../Tag/Tag";
+
 import "./DisplayTagList.css";
 
 const DisplayTagList = ({ tag, currentPage, onDelete }) => {
   return (
     <div className="tag-wrapper tag">
-      <h3 className="tag-name tag">{tag.tag_name}</h3>
+      <Tag tag_name={tag.tag_name} currentPage={currentPage} />
       <code>{tag.date_created}</code>
 
       {currentPage !== "dash" && (

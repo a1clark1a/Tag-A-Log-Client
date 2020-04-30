@@ -161,6 +161,10 @@ function LogPage(props) {
 
   return (
     <section className="log-sect">
+      <div role="alert" className="error-wrapper">
+        {error && <p className="error-message">{error}</p>}
+      </div>
+
       {!edit && logId ? (
         <DisplayLog
           log={log}
@@ -183,9 +187,6 @@ function LogPage(props) {
           currentTags={logsTags}
         />
       )}
-      <div role="alert" className="error-wrapper">
-        {error && <p className="error-message">{error}</p>}
-      </div>
     </section>
   );
 }

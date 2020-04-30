@@ -109,7 +109,18 @@ function Dashboard() {
         return search.filteredOptions.map((log, i) => {
           return <DisplayLogList key={i} log={log} currentPage={currentPage} />;
         });
-      } else if (searchType === "tag") {
+      } else if (search.filteredOptions.length > 0 && searchType === "tag") {
+        if (sortBy === "descending") {
+          search.filteredOptions.sort((tagA, tagB) => {
+            return new Date(tagA.date_created) - new Date(tagB.date_created);
+          });
+        }
+        if (sortBy === "ascending") {
+          search.filteredOptions.sort((logA, logB) => {
+            return new Date(logB.date_created) - new Date(logA.date_created);
+          });
+        }
+
         return search.filteredOptions.map((tag, i) => {
           return (
             <div key={i} onClick={() => onClickedTag(tag)}>
@@ -152,17 +163,17 @@ function Dashboard() {
             value={search.userInput}
           />
         </header>
-        <div className="search-list list">
+        <div className={`search-list list ${searchType}-search-list`}>
           <label className="sort-by-label">
             <SortBy
               sortBY={sortBy}
               onSelect={(e) => setSortBy(e.currentTarget.value)}
             />
           </label>
+          <div>{searchList()}</div>
           <div role="alert" className="error-wrapper">
             {error && <p className="error-message">{error}</p>}
           </div>
-          {searchList()}
         </div>
       </section>
     </section>

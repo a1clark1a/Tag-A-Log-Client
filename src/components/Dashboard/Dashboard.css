@@ -27,6 +27,7 @@
 
 .create-log {
   text-decoration: none;
+  margin-right: 10px;
 }
 
 .create-log-h2 {
@@ -36,12 +37,30 @@
   font-family: Kanit;
   font-weight: 600;
   margin-top: -10px;
-  transition: 0.5s;
 }
 
 .logo {
   width: 100px;
 }
 
-@media screen and (max-width: 500px) {
+.logo {
+  height: auto;
+  border: 0 solid #2b4d28;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.logo:hover {
+  border: 3px solid #2b4d28;
+}
+
+@media screen and (min-width: 600px) {
+  .create-log {
+    position: absolute;
+  }
+
+  .tag-search-list {
+    width: 50%;
+    margin: auto;
+  }
 }

@@ -40,3 +40,12 @@ button,
 .log {
   font-family: Cairo !important;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+div:focus,
+a:focus,
+button:focus {
+  outline: 1px solid #7cc576;
+}
