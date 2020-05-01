@@ -25,4 +25,5 @@ yarn-error.log*
 
 .now
 
-/_snapshots_
+/_snapshots_/
+.snap
