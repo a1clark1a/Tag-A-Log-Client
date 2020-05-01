@@ -11,7 +11,8 @@
   margin: 0 0 1em 1em;
 }
 
-.label {
+.label,
+label {
   font-size: 1.3rem;
   font-weight: 600;
 }
@@ -51,14 +52,16 @@ textarea {
   margin-bottom: 5px;
 }
 
-.log-form {
+.log-form,
+form {
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
   padding-bottom: 3rem;
 }
 
-.log-fieldset {
+.log-fieldset,
+fieldset {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -72,7 +75,8 @@ textarea {
 .log-fieldset > legend {
   text-align: center;
 }
-.log-fieldset > input {
+.log-fieldset > input,
+fieldset > input {
   width: 100%;
 }
 

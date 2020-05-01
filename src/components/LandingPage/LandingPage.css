@@ -6,10 +6,19 @@
   min-height: 100vh;
 }
 
+.special-button {
+  font-family: Cairo;
+  color: black;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0;
+}
+
 .banner {
   width: 100%;
   color: black;
-  background-color: #ffd65b;
+  background-color: white;
 }
 
 .banner-group {
@@ -47,15 +56,33 @@
   margin: 0;
 }
 
-.button-container > button {
+.button-container > button,
+.form-btn {
   font-family: Cairo;
   width: 200px;
   font-size: 1.3rem;
-  margin: 0;
   background-color: white;
   border-radius: 3px;
   border: 2px solid #7cc576;
   position: relative;
+  margin: auto;
+  display: block;
+}
+
+.button-container > button:hover,
+.form-btn:hover {
+  background-color: #7cc576;
+  background-image: linear-gradient(to bottom left, #7cc576, #2b4d28);
+  color: white;
+}
+
+.button-container > button:focus,
+.form-btn:focus {
+  outline: 0.5px solid #7cc576;
+  box-shadow: 00 0 0 1pt #7cc576;
+  background-color: #7cc576;
+  background-image: linear-gradient(to bottom left, #7cc576, #2b4d28);
+  color: white;
 }
 
 .app-info-wrapper {
@@ -91,20 +118,28 @@
 }
 
 .article-header {
+  font-family: Kanit;
   display: flex;
   justify-content: center;
+  font-size: 2.7rem;
+}
+
+.how-to-image {
+  display: block;
+  margin: auto;
 }
 
 .how-to-article {
   display: flex;
   flex-direction: column;
-  padding: 0 2rem;
+  padding: 0 2rem 2rem 2rem;
   width: 50%;
   margin: auto;
 }
 
 .p-icon-container {
   display: flex;
+  justify-content: flex-end;
 }
 
 .right-arrow-container {
@@ -119,6 +154,63 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
+}
+
+.what-now-article {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem 2rem 2rem;
+  background-color: white;
+}
+
+.landing-log {
+  color: #2b4d28;
+  font-weight: 700;
+}
+
+.landing-tag {
+  color: #f68e56;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 800px) {
+  .what-now-article > div {
+    width: 50%;
+    margin: auto;
+  }
+
+  li,
+  p {
+    font-size: 1.2rem;
+  }
+
+  .left-header,
+  .right-header {
+    font-size: 1.6rem;
+  }
+
+  .right-pointing,
+  .left-pointing {
+    width: 150px;
+  }
+
+  .right-pointing {
+    margin-left: 10%;
+  }
+  .left-pointing {
+    margin-right: 10%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .how-to-article,
+  .what-now-article,
+  article {
+    width: 100%;
+  }
+  .app-desc,
+  .app-info-wrapper {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -158,6 +250,7 @@
   .app-desc {
     width: 100%;
     font-size: 1.2rem;
+    margin: 1rem 0;
   }
 
   .app-info-wrapper {
@@ -166,19 +259,25 @@
 
   .left-header,
   .right-header {
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
+    margin: 1rem 0 0 0;
+    font-family: Kanit;
+    font-weight: 500;
+    font-size: 1.4rem;
   }
   .app-info-wrapper > p {
-    margin: 0;
-    font-size: 1rem;
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .article-header {
+    font-size: 2rem;
   }
 
   .how-to-image {
     width: 80%;
     margin: auto;
     display: block;
+    margin-top: 20px;
   }
 
   .how-to-article {
@@ -197,6 +296,26 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
+  }
+
+  p,
+  li {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .how-to-article > div {
+    margin-bottom: 10%;
+  }
+
+  .congrats {
+    font-size: 2rem;
+  }
+
+  .form-btn {
+    display: flex;
+    justify-content: center;
+    margin: auto;
   }
 }
 

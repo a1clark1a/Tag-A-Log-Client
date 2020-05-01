@@ -102,7 +102,9 @@ function LandingPage() {
       <nav>
         <a href="#signup">Sign Up</a>
         <a href="#login">Login</a>
-        <a onClick={demo}>Demo</a>
+        <button className="special-button" onClick={demo}>
+          Demo
+        </button>
       </nav>
       <header role="banner" className="banner">
         <article className="banner-group">
@@ -123,28 +125,29 @@ function LandingPage() {
           <div className="app-info-wrapper">
             <h2 className="left-header">"What's a Log?"</h2>
             <p>
-              - A <span style={{ color: "#7cc576" }}>Log</span> can be a website
+              - A <span className={"landing-log"}>Log</span> can be a website
               you want to bookmark, but you don't want to forget why you
-              bookmark it. An article you found, but you only need a paragraph
-              of and still be able to save the url incase you want to read the
-              whole thing.
+              bookmark it. It can be an article you found, but you only need a
+              paragraph of it yet still be able to save the url incase you want
+              to read the whole thing.
             </p>
             <h2 className="right-header">"What's a Tag?"</h2>
             <p>
-              - A <span style={{ color: "#f68e56" }}>Tag</span> is a label or 1
-              word summary you put on your Log to categorize it for quick
-              searching. It can be an easy word to remember that you can
-              associate with the log that you created.
+              - A <span className="landing-tag">Tag</span> is a label or 1 word
+              summary you put on your
+              <span className="landing-log"> Log </span> to categorize it for
+              quick searching. It can be an easy word to remember that you can
+              associate with the <span className="landing-log">Log </span>that
+              you created.
             </p>
           </div>
         </article>
       </header>
-      <article className="how-to-article">
+      <article className="how-to-article" id="signup">
         <h2 className="article-header">How to use?</h2>
         <div className="button-container">
           <h3 className="left-header">Create an account</h3>
           <button
-            id="signup"
             className="form-btn signUp"
             onClick={() => {
               setActive("signUp");
@@ -160,13 +163,17 @@ function LandingPage() {
             />
           )}
         </div>
-        <div className="right-arrow-container">
-          <img className="right-pointing" src={arrow} alt={"arrow-icon"} />
-          <h3 className="right-header">Click Create Log Button</h3>
-        </div>
         <div>
+          <div className="right-arrow-container">
+            <img className="right-pointing" src={arrow} alt={"arrow-icon"} />
+            <h3 className="right-header">Click Create Log button</h3>
+          </div>
+
           <div className="p-icon-container">
-            <p>Once youre in, Find and Click this button: =></p>
+            <p>
+              <span>Once you're in the Dashboard, </span>
+              Find and Click this button:{" "}
+            </p>
             <img
               className="landing-page-icon"
               src={logo}
@@ -174,66 +181,85 @@ function LandingPage() {
             />
           </div>
         </div>
-        <div className="left-arrow-container">
-          <img className="left-pointing" src={arrow} alt={"arrow-icon"} />
-          <h3 className="left-header">Make your Log!</h3>
-        </div>
+
         <div>
-          <p>Simply fill in the form:</p>
+          <div className="left-arrow-container">
+            <img className="left-pointing" src={arrow} alt={"arrow-icon"} />
+            <h3 className="left-header">
+              Make your <span className="landing-log"> Log!</span>
+            </h3>
+          </div>
           <ul>
             <li>
-              Name: A good Log Name, can be the title of the article, a summary
-              or name of the webpage.
+              <span style={{ fontWeight: "700" }}>Name:</span> A good
+              <span className="landing-log"> Log</span> Name, can be the title
+              of the article, a summary or name of a webpage.
             </li>
             <li>
-              Info: A write brief description of what Log you are saving, copy
-              paste a paragraph in the article or a code snippets.
+              <span style={{ fontWeight: "700" }}>Info:</span> Write a brief
+              description of what <span className="landing-log">Log</span> you
+              are making, you can copy and paste a paragraph of an article or a
+              code snippet in here.
             </li>
           </ul>
-          <img
-            className="how-to-image"
-            src={mobile}
-            alt={"create a log image"}
-          />
+          <img className="how-to-image" src={mobile} alt={"create a log"} />
         </div>
-        <div className="right-arrow-container">
-          <img className="right-pointing" src={arrow} alt={"arrow-icon"} />
-          <h3 className="right-header">Don't forget to Tag-A-Log, or don't.</h3>
-        </div>
+
         <div>
-          <img className="how-to-image" src={addTag} alt={"add a tag image"} />
+          <div className="right-arrow-container">
+            <img className="right-pointing" src={arrow} alt={"arrow-icon"} />
+            <h3 className="right-header" style={{ marginLeft: "1rem" }}>
+              Don't forget to Tag-A-Log, or don't.
+            </h3>
+          </div>
+          <img className="how-to-image" src={addTag} alt={"add a tag "} />
         </div>
+
         <div className="left-arrow-container">
           <img className="left-pointing" src={arrow} alt={"arrow-icon"} />
-          <h3 className="left-header">Congrats!! You've made your log!</h3>
+          <h3 className="left-header congrats">
+            Congrats!! You've made a <span className="landing-log">Log</span>!
+          </h3>
         </div>
-        <div></div>
       </article>
       <article className="what-now-article">
-        <h2 className="article-header">What now?</h2>
-        <h3 className="left-header">You can forget it about!</h3>
-        <p>
-          If you need to find if again, you can use the search feature on the
-          dashboard.
-        </p>
-        <ul>
-          <li>Find A Log by the Log's name.</li>
-          <li>Find A Log by Tag.</li>
-          <li>Sort it by which was created first or the lastest.</li>
-        </ul>
+        <div>
+          <h2 className="article-header">What now?</h2>
+          <h3 className="left-header">You can forget about it!</h3>
+          <p>
+            If you need to find it again, you can use the search feature on the
+            dashboard.
+          </p>
+          <ul>
+            <li>
+              Find A <span className="landing-log">Log</span> by the
+              <span className="landing-log"> Log's</span> name.
+            </li>
+            <li>
+              Find A <span className="landing-log">Log</span> by{" "}
+              <span className="landing-tag">Tag</span>.
+            </li>
+            <li>Sort it by which was created first or the lastest.</li>
+          </ul>
 
-        <h3 className="right-header">Check out your Profile Page</h3>
-        <ul>
-          <li>
-            If you need to see all your Logs without a search, you can see them
-            here.
-          </li>
-          <li>You can check all your Tags here as well.</li>
-          <li>
-            You can delete your Logs or Tags without having to go on each Log to
-            delete them.
-          </li>
-        </ul>
+          <h3 className="right-header">Check out your Profile Page</h3>
+          <ul>
+            <li>
+              If you need to see all your{" "}
+              <span className="landing-log">Logs</span> without a search, you
+              can see them here.
+            </li>
+            <li>
+              You can check all your <span className="landing-tag">Tags</span>{" "}
+              here as well.
+            </li>
+            <li>
+              You can delete your <span className="landing-log">Logs</span> or
+              <span className="landing-tag"> Tags</span> without having to go on
+              each <span className="landing-log">Log</span> to delete them.
+            </li>
+          </ul>
+        </div>
       </article>
       <article className="button-container">
         <h2 className="article-header">Login</h2>

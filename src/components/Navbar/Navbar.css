@@ -12,11 +12,13 @@ nav {
   background-color: #ffd65b;
 }
 
-nav > a {
+nav > a,
+.special-button {
   margin: 0 2rem;
   text-decoration: none;
   color: black;
   font-size: 1.2rem;
+  font-weight: 400 !important;
 }
 
 nav > a > h2 {
@@ -45,7 +47,9 @@ nav > .active > h2:after {
 }
 
 nav > a:hover,
-nav > a:focus {
+nav > a:focus,
+.special-button:hover,
+.special-button:focus {
   color: white;
   outline: none;
 }
@@ -56,7 +60,8 @@ nav > a:focus {
     justify-content: space-around;
   }
 
-  nav > a {
+  nav > a,
+  .special-button {
     margin: 0 1.3rem;
   }
 }
