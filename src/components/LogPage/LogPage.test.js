@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import LogPage from "./Logpage";
 
 it(`renders without crashing`, () => {
   const div = document.createElement("div");
+  const props = {
+    match: { params: { logId: 1 } },
+    history: {
+      push: () => {},
+    },
+  };
   ReactDOM.render(
     <BrowserRouter>
-      <App />
+      <LogPage {...props} />
     </BrowserRouter>,
     div
   );
