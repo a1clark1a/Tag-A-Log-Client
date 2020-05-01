@@ -22,7 +22,7 @@
 .dash-header {
   background-color: #f4f4f4;
   display: flex;
-  margin-bottom: 5%;
+  margin-bottom: 25px;
 }
 
 .create-log {
