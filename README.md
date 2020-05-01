@@ -21,55 +21,52 @@
 
 ## Screenshots
 
-### Landin Page
+### Landing Page
 
 - Desktop
-  ![Desktop View](screenshots/Desktop-LandingPage.PNG)
+  ![Desktop View](screenshots/LandingPage.PNG)
 
 - Mobile
-  ![Desktop View](screenshots/Mobile-LandingPage.jpg)
+  ![Desktop View](screenshots/mobileLanding.jpg)
 
-### Image Page
+### Dashboard Page
 
 - Desktop
-  ![Desktop View](screenshots/Desktop-ImagePage.PNG)
+  ![Desktop View](screenshots/Dashboard.PNG)
 
 - Mobile
-  ![Mobile View](screenshots/Mobile-ImagePage.jpg)
+  ![Mobile View](screenshots/mobileDashsearch.jpg)
 
 ### Profile Page
 
 - Desktop
-  ![Desktop View](screenshots/Desktop-ProfilePage.PNG)
+  ![Desktop View](screenshots/ProfilePage.PNG)
 
 - Mobile
-  ![Mobile View](screenshots/Mobile-ProfilePage.jpg)
+  ![Mobile View](screenshots/mobileProfile.jpg)
 
-### Login Page
+- Mobile
+  ![Mobile View](screenshots/mobileProfileTags.jpg)
+
+### Log Page
 
 - Desktop
-  ![Desktop View](screenshots/Desktop-LoginPage.PNG)
+  ![Desktop View](screenshots/LogPage.PNG)
 
 - Mobile
-  ![Mobile View](screenshots/Mobile-Loginpage.jpg)
+  ![Mobile View](screenshots/mobileLogPage.jpg)
 
-### Register Page
+### Edit/Create Page
 
 - Desktop
-  ![Desktop View](screenshots/Desktop-RegisterPage.PNG)
+  ![Desktop View](screenshots/Edit-Create.PNG)
 
 - Mobile
-  ![Mobile View](screenshots/Mobile-RegisterPage.jpg)
-
-### Upload Page
-
-- Desktop
-  ![Desktop View](screenshots/Desktop-UploadPage.PNG)
-
-- Mobile
-  ![Mobile View](screenshots/Mobile-UploadImage.jpg)
+  ![Mobile View](screenshots/mobileCreate.jpg)
 
 ## In Development
 
-- Add Images
-- Add Files
+- Allow user to add Images to their logs
+- Allow users to upload Files to their logs
+- Loading animation
+- Allow users to change background color of tags
