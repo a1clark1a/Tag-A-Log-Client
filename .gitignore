@@ -25,5 +25,5 @@ yarn-error.log*
 
 .now
 
-/_snapshots_/
+src/components/LandingPage/__snapshots__
 .snap
