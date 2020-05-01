@@ -15,6 +15,7 @@ const DisplayLogList = ({ log, onDelete, currentPage }) => {
   let updateComponent;
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     updateComponent = true;
     if (log.id) {
       LogsService.getLogsListOfTags(log.id)

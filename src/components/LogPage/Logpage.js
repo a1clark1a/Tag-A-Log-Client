@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -79,6 +80,7 @@ function LogPage(props) {
       tagsToDelete.forEach((tagToDelete) => {
         let tagObj = logsTags.find((tag) => tag.tag_name === tagToDelete);
         if (tagObj) {
+          delete addedTagList[tagObj.tag_name];
           LogsService.deleteALogTag(logId, tagObj.id).catch((res) =>
             setError(res.error.message)
           );
@@ -109,6 +111,16 @@ function LogPage(props) {
   const handleLogTagRelation = (addedTagList = [], logId) => {
     if (addedTagList.length > 0) {
       let addedTag = [];
+      let removedDuplicates = [];
+      logsTags.forEach((tag) => {
+        addedTagList.forEach((tagName, i) => {
+          if (tagName === tag.tag_name) {
+            removedDuplicates.push(tag);
+            delete addedTagList[i];
+          }
+        });
+      });
+
       addedTagList.forEach((tagName) => {
         const newTag = {
           tag_name: tagName,
@@ -117,7 +129,7 @@ function LogPage(props) {
         let exist = false;
         let newLogTag = {};
         tagList.forEach((tag) => {
-          for (const [key, value] of Object.entries(tag)) {
+          for (const [value] of Object.entries(tag)) {
             if (value === tagName) {
               addedTag.push(tag);
               newLogTag = {
@@ -129,22 +141,24 @@ function LogPage(props) {
             }
           }
         });
-        console.log(exist);
+
         if (exist) {
           LogsService.tagALog(newLogTag)
             .then(() => {})
             .catch((res) => setError(res.error.message));
-          setLogsTags([...addedTag]);
+          setLogsTags([...removedDuplicates, ...addedTag]);
         } else {
           TagsService.postTag(newTag)
             .then((tag) => {
               addedTag.push(tag);
-              console.log(addedTag);
-              setLogsTags([...logsTags, ...addedTag]);
+
+              setLogsTags([...removedDuplicates, ...addedTag]);
             })
             .catch((res) => setError(res.error.message));
         }
       });
+
+      setLogsTags([...addedTag, ...removedDuplicates]);
     } else {
       setLogsTags([]);
     }

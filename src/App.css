@@ -41,6 +41,19 @@ button,
   font-family: Cairo !important;
 }
 
+ul {
+  margin: 0;
+}
+
+.error-wrapper {
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  font-weight: 700;
+}
+
 input:focus,
 select:focus,
 textarea:focus,

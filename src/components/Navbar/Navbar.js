@@ -10,7 +10,7 @@ function Navbar() {
 
   useEffect(() => {
     setActive(window.location.pathname);
-  });
+  }, [active]);
   const smoothScrollToTop = () => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   };

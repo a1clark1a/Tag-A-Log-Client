@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -130,6 +131,7 @@ const CreateLog = ({
 
   const onDeleteTag = (tagName) => {
     clearError();
+    // eslint-disable-next-line array-callback-return
     const newLogsTags = addTagList.filter((tag) => {
       if (tag !== tagName) {
         return tag;
@@ -151,11 +153,15 @@ const CreateLog = ({
   const onClickAddTag = (e) => {
     if (addTagList.length < 5) {
       const constraint = /^[a-z]+$/g;
-      if (!constraint.test(tag) || tag.length > 10) {
+      if (!constraint.test(tag) || tag.length > 15) {
         setTag("");
         return setError(
-          "Tag must not have a whitespace, number or special characters and not longer than 10 letters"
+          "Tag must not have a whitespace, number or special characters and not longer than 15 letters"
         );
+      }
+      if (tagsToDelete.includes(tag)) {
+        const newTagsToDelete = tagsToDelete.filter((elem) => elem !== tag);
+        setTagsToDelete(newTagsToDelete);
       }
 
       if (!addTagList.includes(tag)) {

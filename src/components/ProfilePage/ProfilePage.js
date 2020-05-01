@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from "react";
 
 //component
 import DisplayLogList from "../DisplayLogList/DisplayLogList";
-import DisplayTagList from "../DisplayTagList/DisplayTagList";
 import SortBy from "../formComponents/SortBy";
 import Tag from "../Tag/Tag";
 
@@ -51,7 +51,6 @@ function ProfilePage() {
   }, []);
 
   const onDeleteLog = (logId) => {
-    console.log("deleting", logId);
     LogsService.deleteLog(logId)
       .then(() => {
         deleteLogsFromList(logId);
@@ -60,7 +59,6 @@ function ProfilePage() {
   };
 
   const onDeleteTag = (tagId) => {
-    console.log("deleting", tagId);
     TagsService.deleteTag(tagId)
       .then(() => {
         deleteTagsFromList(tagId);
@@ -91,12 +89,6 @@ function ProfilePage() {
       );
     });
   };
-  /*
-  const displayTags = () => {
-    return tagList.map((tag, i) => {
-      return <DisplayTagList key={i} tag={tag} onDelete={onDeleteTag} />;
-    });
-  }; */
 
   const displayTags = () => {
     return tagList.map((tag, i) => {
@@ -133,6 +125,9 @@ function ProfilePage() {
             onSelect={(e) => setSortBy(e.currentTarget.value)}
           />
         )}
+        <div role="alert" className="error-wrapper">
+          {error && <p className="error-message">{error}</p>}
+        </div>
         {active === "Logs" ? displayLogs() : displayTags()}
       </div>
     </section>

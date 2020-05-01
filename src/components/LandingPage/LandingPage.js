@@ -13,7 +13,6 @@ import SignUp from "../formComponents/SignUp";
 //CSS and icons
 import logo from "../../Icon/Logo.png";
 import arrow from "../../Icon/Arrow.png";
-import create from "../../Icon/CreateLog.png";
 import mobile from "../../Icon/mobileCreate.png";
 import addTag from "../../Icon/AddATag.png";
 import "./LandingPage.css";
@@ -61,9 +60,8 @@ function LandingPage() {
         password.value = "";
         email.value = "";
         re_type_password.value = "";
-        console.log(res);
+
         if (res) {
-          console.log("trigger");
           AuthApiService.postLoginUser({
             user_name: new_user.user_name,
             password: new_user.password,
@@ -75,7 +73,6 @@ function LandingPage() {
               history.push("/dashboard");
             })
             .catch((res) => {
-              console.log(res);
               setError(res.error.message);
             });
         }
@@ -86,6 +83,7 @@ function LandingPage() {
   };
 
   const demo = () => {
+    setError(null);
     AuthApiService.postLoginUser({
       user_name: "demo",
       password: "Password123!",
@@ -162,6 +160,9 @@ function LandingPage() {
               handleSubmit={(e) => handleRegisterNewUser(e)}
             />
           )}
+          <div role="alert" className="error-wrapper">
+            {error && <p className="error-message">{error}</p>}
+          </div>
         </div>
         <div>
           <div className="right-arrow-container">
@@ -262,9 +263,10 @@ function LandingPage() {
         </div>
       </article>
       <article className="button-container">
-        <h2 className="article-header">Login</h2>
+        <h2 id="login" className="article-header">
+          Login
+        </h2>
         <button
-          id="login"
           className="form-btn logIn"
           onClick={() => {
             setActive("logIn");

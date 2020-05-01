@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -28,7 +29,6 @@ function Dashboard() {
     setLogList,
     setTagList,
     clearError,
-    clearLogList,
   } = context;
   const [search, setSearch] = useState({
     activeOption: 0,
@@ -76,7 +76,6 @@ function Dashboard() {
   };
 
   const onClickedTag = (tag) => {
-    console.log("clicked tag ", tag.tag_name);
     setSearch({
       activeOption: 0,
       filteredOptions: [],
