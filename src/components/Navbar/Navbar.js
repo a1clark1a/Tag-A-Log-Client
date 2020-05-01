@@ -10,7 +10,10 @@ function Navbar() {
 
   useEffect(() => {
     setActive(window.location.pathname);
-  });
+    return () => {
+      setActive(window.location.pathname);
+    };
+  }, [setActive]);
 
   const smoothScrollToTop = () => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
@@ -25,7 +28,10 @@ function Navbar() {
       <Link
         className={active === "/dashboard" ? "active" : ""}
         to={"/dashboard"}
-        onClick={smoothScrollToTop()}
+        onClick={() => {
+          setActive("/dashboard");
+          smoothScrollToTop();
+        }}
       >
         <h2>Dashboard</h2>
       </Link>
@@ -33,7 +39,10 @@ function Navbar() {
       <Link
         className={active === "/profilepage" ? "active" : ""}
         to={"/profilepage"}
-        onClick={smoothScrollToTop()}
+        onClick={() => {
+          setActive("/profilepage");
+          smoothScrollToTop();
+        }}
       >
         <h2>Profile</h2>
       </Link>
