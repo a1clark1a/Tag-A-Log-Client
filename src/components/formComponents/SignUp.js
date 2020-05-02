@@ -38,16 +38,6 @@ function SignUp({ handleSubmit }) {
           required
         />
 
-        <label htmlFor="re_type_password">Re-type Password: </label>
-        <input
-          id="re_type_password"
-          name="re_type_password"
-          aria-label="password"
-          aria-required="true"
-          type="password"
-          required
-        />
-
         <button className="form-btn" type="submit">
           Register
         </button>
