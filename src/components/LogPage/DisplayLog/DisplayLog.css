@@ -21,9 +21,11 @@
 
 .log-url {
   margin-top: -5px;
-  line-height: 10px;
+  line-height: 12px;
   margin-bottom: 10px;
   display: block;
+  font-style: italic;
+  text-decoration: none;
 }
 
 .disp-log-date {

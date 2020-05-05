@@ -21,7 +21,7 @@ const DisplayLog = ({ log, tagList = [], onClick, onDelete, disable }) => {
         rel="noopener noreferrer"
         className="log log-url"
       >
-        {log.url}
+        URL LINK
       </a>
       <h4 className="disp-log-header">Date Created:</h4>
       <code className="disp-log-date">{log.date_created}</code>
