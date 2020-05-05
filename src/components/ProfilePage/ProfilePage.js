@@ -56,23 +56,6 @@ function ProfilePage() {
   const onDeleteLog = (obj) => {
     setShowModal(true);
     setToDelete(obj);
-    /*
-    LogsService.deleteLog(logId)
-      .then(() => {
-        deleteLogsFromList(logId);
-      })
-      .catch((res) => setError(res.error.message));
-      */
-  };
-
-  const onDeleteTag = (tagId) => {
-    /*
-    TagsService.deleteTag(tagId)
-      .then(() => {
-        deleteTagsFromList(tagId);
-      })
-      .catch((res) => setError(res.error.message));
-      */
   };
 
   const handleConfirm = () => {

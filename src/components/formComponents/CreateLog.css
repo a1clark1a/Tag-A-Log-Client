@@ -86,9 +86,17 @@ textarea {
   padding: 2%;
 }
 
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .btn-create-log,
 .btn-edit-log,
-.btn-add-tag {
+.btn-add-tag,
+.btn-back {
   font-family: Cairo;
   font-size: 1.3rem;
   background-color: white;
@@ -98,17 +106,19 @@ textarea {
 
 .btn-create-log:hover,
 .btn-edit-log:hover,
-.btn-add-tag:hover {
+.btn-add-tag:hover,
+.btn-back:hover {
   background-color: #7cc576;
   background-image: linear-gradient(to bottom left, #7cc576, #2b4d28);
   color: white;
 }
 
 .btn-create-log,
-.btn-edit-log {
+.btn-edit-log,
+.btn-back {
   font-family: Cairo;
-  width: 200px;
-  margin: 1rem;
+  width: 150px;
+  margin: 0.5rem;
   background-color: white;
   border-radius: 3px;
   border: 2px solid #7cc576;

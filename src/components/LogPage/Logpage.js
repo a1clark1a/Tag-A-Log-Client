@@ -180,6 +180,7 @@ function LogPage(props) {
       .catch((res) => setError(res.error.message));
   };
 
+  console.log(history);
   return (
     <section className="log-sect">
       <div role="alert" className="error-wrapper">
@@ -192,6 +193,7 @@ function LogPage(props) {
       >
         <span>Are you sure you want to delete? </span>
       </DeleteModal>
+
       {!edit && logId ? (
         <DisplayLog
           log={log}

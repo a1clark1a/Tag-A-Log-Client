@@ -259,15 +259,28 @@ const CreateLog = ({
           }
           required
         />
-        {edit ? (
-          <button className="btn-edit-log" type="submit">
-            Edit
+        <div className="btn-group">
+          {edit ? (
+            <button className="btn-edit-log" type="submit">
+              Edit
+            </button>
+          ) : (
+            <button name="log-form" className="btn-create-log" type="submit">
+              Create
+            </button>
+          )}
+          <button
+            onClick={() =>
+              history.push(
+                !edit ? `/dashboard` : `${history.location.pathname}`
+              )
+            }
+            name="log-form"
+            className="btn-back"
+          >
+            Back
           </button>
-        ) : (
-          <button name="log-form" className="btn-create-log" type="submit">
-            Create
-          </button>
-        )}
+        </div>
       </fieldset>
     </form>
   );
