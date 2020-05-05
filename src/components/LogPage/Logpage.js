@@ -10,12 +10,14 @@ import TagsService from "../../service/tag-service";
 //components
 import DisplayLog from "./DisplayLog/DisplayLog";
 import CreateLog from "../formComponents/CreateLog";
+import DeleteModal from "../formComponents/DeleteModal";
 
 import "./LogPage.css";
 
 function LogPage(props) {
   const context = useContext(Context);
   const history = useHistory();
+  const [showModal, setShowModal] = useState(false);
   const [edit, allowEdit] = useState(false);
   const [logsTags, setLogsTags] = useState([]);
   const { logId } = props.match.params;
@@ -165,6 +167,19 @@ function LogPage(props) {
   };
 
   const handleOnDeleteLog = (logId) => {
+    setShowModal("true");
+    /*
+    LogsService.deleteLog(logId)
+      .then(() => {
+        deleteLogsFromList(logId);
+        history.push("/dashboard");
+      })
+      .catch((res) => setError(res.error.message));
+      */
+  };
+
+  const handleConfirm = () => {
+    console.log("confirmed");
     LogsService.deleteLog(logId)
       .then(() => {
         deleteLogsFromList(logId);
@@ -178,7 +193,13 @@ function LogPage(props) {
       <div role="alert" className="error-wrapper">
         {error && <p className="error-message">{error}</p>}
       </div>
-
+      <DeleteModal
+        handleConfirm={() => handleConfirm()}
+        handleCancel={() => setShowModal(false)}
+        show={showModal}
+      >
+        <span>Are you sure you want to delete? </span>
+      </DeleteModal>
       {!edit && logId ? (
         <DisplayLog
           log={log}
@@ -188,6 +209,7 @@ function LogPage(props) {
             allowEdit(true);
           }}
           onDelete={handleOnDeleteLog}
+          disable={showModal}
         />
       ) : (
         <CreateLog

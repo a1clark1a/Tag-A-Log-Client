@@ -5,6 +5,7 @@ import React, { useState, useContext, useEffect } from "react";
 import DisplayLogList from "../DisplayLogList/DisplayLogList";
 import SortBy from "../formComponents/SortBy";
 import Tag from "../Tag/Tag";
+import DeleteModal from "../formComponents/DeleteModal";
 
 //service
 import Context from "../../context/ContextProvider";
@@ -16,6 +17,8 @@ import "./ProfilePage.css";
 function ProfilePage() {
   const [active, setActive] = useState("Logs");
   const [sortBy, setSortBy] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [toDelete, setToDelete] = useState(null);
   const context = useContext(Context);
   const {
     error,
@@ -50,20 +53,44 @@ function ProfilePage() {
     };
   }, []);
 
-  const onDeleteLog = (logId) => {
+  const onDeleteLog = (obj) => {
+    setShowModal(true);
+    setToDelete(obj);
+    /*
     LogsService.deleteLog(logId)
       .then(() => {
         deleteLogsFromList(logId);
       })
       .catch((res) => setError(res.error.message));
+      */
   };
 
   const onDeleteTag = (tagId) => {
+    /*
     TagsService.deleteTag(tagId)
       .then(() => {
         deleteTagsFromList(tagId);
       })
       .catch((res) => setError(res.error.message));
+      */
+  };
+
+  const handleConfirm = () => {
+    if ("tag_name" in toDelete) {
+      TagsService.deleteTag(toDelete.id)
+        .then(() => {
+          deleteTagsFromList(toDelete.id);
+        })
+        .catch((res) => setError(res.error.message));
+    } else {
+      LogsService.deleteLog(toDelete.id)
+        .then(() => {
+          deleteLogsFromList(toDelete.id);
+        })
+        .catch((res) => setError(res.error.message));
+    }
+    setShowModal(false);
+    setToDelete(null);
   };
 
   const displayLogs = () => {
@@ -96,7 +123,7 @@ function ProfilePage() {
         <Tag
           key={i}
           tag_name={tag.tag_name}
-          onDeleteTag={() => onDeleteTag(tag.id)}
+          onDeleteTag={() => onDeleteLog(tag)}
         />
       );
     });
@@ -118,6 +145,13 @@ function ProfilePage() {
           Tags
         </button>
       </header>
+      <DeleteModal
+        handleConfirm={handleConfirm}
+        handleCancel={() => setShowModal(false)}
+        show={showModal}
+      >
+        <span>Are you sure you want to delete?</span>
+      </DeleteModal>
       <div className={`prof-${active} list`}>
         {active === "Logs" && (
           <SortBy

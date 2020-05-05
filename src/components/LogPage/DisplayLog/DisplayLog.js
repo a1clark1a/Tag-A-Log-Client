@@ -5,7 +5,7 @@ import Tag from "../../Tag/Tag";
 
 import "./DisplayLog.css";
 
-const DisplayLog = ({ log, tagList = [], onClick, onDelete }) => {
+const DisplayLog = ({ log, tagList = [], onClick, onDelete, disable }) => {
   const displayAddedTags = () => {
     return tagList.map((tag, i) => {
       return <Tag key={i} tag_name={tag.tag_name} currentPage={"log"} />;
@@ -34,14 +34,16 @@ const DisplayLog = ({ log, tagList = [], onClick, onDelete }) => {
       <div className="log-div">
         <p className="log disp-log-desc">{log.description}</p>
       </div>
-      <div className="button-grp btn-grp-log">
-        <button type="button" onClick={onClick}>
-          EDIT
-        </button>
-        <button type="button" onClick={() => onDelete(log.id)}>
-          Delete
-        </button>
-      </div>
+      {!disable && (
+        <div className="button-grp btn-grp-log">
+          <button type="button" onClick={onClick}>
+            EDIT
+          </button>
+          <button type="button" onClick={() => onDelete(log.id)}>
+            Delete
+          </button>
+        </div>
+      )}
     </article>
   );
 };

@@ -54,7 +54,7 @@ const DisplayLogList = ({ log, onDelete, currentPage }) => {
         <button
           className="log-delete log"
           aria-label="delete"
-          onClick={() => onDelete(log.id)}
+          onClick={() => onDelete(log)}
         >
           X
         </button>
