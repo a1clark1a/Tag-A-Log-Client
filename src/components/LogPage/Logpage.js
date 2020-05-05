@@ -131,8 +131,9 @@ function LogPage(props) {
         let exist = false;
         let newLogTag = {};
         tagList.forEach((tag) => {
-          for (const [value] of Object.entries(tag)) {
+          for (const [key, value] of Object.entries(tag)) {
             if (value === tagName) {
+              console.log("inside trigger");
               addedTag.push(tag);
               newLogTag = {
                 log_id: logId,
@@ -143,7 +144,6 @@ function LogPage(props) {
             }
           }
         });
-
         if (exist) {
           LogsService.tagALog(newLogTag)
             .then(() => {})
@@ -168,14 +168,6 @@ function LogPage(props) {
 
   const handleOnDeleteLog = (logId) => {
     setShowModal("true");
-    /*
-    LogsService.deleteLog(logId)
-      .then(() => {
-        deleteLogsFromList(logId);
-        history.push("/dashboard");
-      })
-      .catch((res) => setError(res.error.message));
-      */
   };
 
   const handleConfirm = () => {
