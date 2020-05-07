@@ -7,7 +7,6 @@ import SearchBar from "../formComponents/SearchBar";
 import DisplayLogList from "../DisplayLogList/DisplayLogList";
 import DisplayTagList from "../DisplayTagList/DisplayTagList";
 import SortBy from "../formComponents/SortBy";
-import InfoToolTip from "../formComponents/InfoToolTip";
 
 //service
 import LogsService from "../../service/log-service";

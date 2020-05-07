@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import Tag from "../Tag/Tag";
+import InfoToolTip from "../formComponents/InfoToolTip";
 
 import Context from "../../context/ContextProvider";
 
@@ -228,6 +229,11 @@ const CreateLog = ({
           <button className="btn-add-tag" type="button" onClick={onClickAddTag}>
             Add
           </button>
+          <InfoToolTip
+            text={
+              "A Tag is a label or 1 word summary you associate a Log with. A Tag cannont have any space, number or special character"
+            }
+          />
         </div>
 
         <div className="added-tags-wrapper">{displayAddedTags()}</div>

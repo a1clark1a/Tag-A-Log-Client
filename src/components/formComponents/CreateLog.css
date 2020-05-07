@@ -27,6 +27,7 @@ textarea {
 }
 .add-tag-container {
   display: flex;
+  align-items: center;
 }
 
 .tag-options-wrapper {
@@ -128,7 +129,7 @@ textarea {
   width: 30%;
   max-width: 100px;
   max-height: 42px;
-  margin: 0 0 1rem 1rem;
+  margin: 0 5px 0 1rem;
   margin-top: 0;
 }
 @media screen and (max-width: 800px) {
