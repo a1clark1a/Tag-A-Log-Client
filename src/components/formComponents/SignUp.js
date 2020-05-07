@@ -1,5 +1,7 @@
 import React from "react";
 
+import InfoToolTip from "../formComponents/InfoToolTip";
+
 import "./SignUp.css";
 
 function SignUp({ handleSubmit }) {
@@ -28,7 +30,15 @@ function SignUp({ handleSubmit }) {
           required
         />
 
-        <label htmlFor="password">Password: </label>
+        <label className="label-alignment" htmlFor="password">
+          Password:{" "}
+          <InfoToolTip
+            text={
+              "Password must contain 1 upper case, lower case, number and special character"
+            }
+          />
+        </label>
+
         <input
           id="password"
           name="password"

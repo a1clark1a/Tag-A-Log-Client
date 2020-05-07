@@ -1,5 +1,7 @@
 import React from "react";
 
+import InfoToolTip from "../formComponents/InfoToolTip";
+
 import "./SearchBar.css";
 
 function SearchBar({ onChange, value, onSelect, searchType }) {
@@ -15,13 +17,21 @@ function SearchBar({ onChange, value, onSelect, searchType }) {
           <option value="name">Name</option>
           <option value="tag">Tag</option>
         </select>
+        <InfoToolTip text={"Find your Logs either by Tags or the Log's Name"} />
       </label>
-      <input
-        type="text"
-        className="search-input"
-        onChange={onChange}
-        value={value}
-      />
+      <div className="search-box">
+        <input
+          type="text"
+          className="search-input"
+          onChange={onChange}
+          value={value}
+        ></input>
+        <InfoToolTip
+          text={
+            "Type either the name of the Log or a Tag Name based on the selection made "
+          }
+        />
+      </div>
     </form>
   );
 }

@@ -5,3 +5,12 @@
 .signup-fieldset {
   width: initial;
 }
+
+.label-alignment {
+  display: flex;
+  align-items: center;
+}
+
+.label-alignment > div {
+  font-family: Cairo !important;
+}

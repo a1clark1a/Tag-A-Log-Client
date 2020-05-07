@@ -3,6 +3,10 @@
   margin-left: 5px;
 }
 
+.sort-by-label > select {
+  padding: 8px 0;
+}
+
 .sort-by-label > h4 {
   margin: 0;
   margin-left: 5px;
