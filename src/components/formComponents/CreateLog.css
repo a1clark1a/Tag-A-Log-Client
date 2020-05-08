@@ -132,6 +132,16 @@ textarea {
   margin: 0 5px 0 1rem;
   margin-top: 0;
 }
+
+.label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.label-wrapper > label {
+  margin-right: 5px;
+}
+
 @media screen and (max-width: 800px) {
   .log-fieldset {
     width: 70%;

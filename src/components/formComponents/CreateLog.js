@@ -189,7 +189,14 @@ const CreateLog = ({
       }
     >
       <fieldset className="log-fieldset">
-        <label className=" label create-log-name">Name of Log: </label>
+        <div className="label-wrapper">
+          <label className=" label create-log-name">Name of Log: </label>
+          <InfoToolTip
+            text={
+              "Short descriptive title for your log, a title of an article or website or topic"
+            }
+          />
+        </div>
         <input
           name="log_name"
           id="log_name"
@@ -205,7 +212,15 @@ const CreateLog = ({
           }
           required
         />
-        <label className=" label ">Add a Tag: </label>
+        <div className="label-wrapper">
+          <label className=" label label-alignment">Add a Tag: </label>
+          <InfoToolTip
+            text={
+              "A Tag is a label or 1 word summary you associate a Log with. A Tag cannot have any space, number or special character"
+            }
+          />
+        </div>
+
         <div className="add-tag-container">
           <div>
             <input
@@ -229,15 +244,15 @@ const CreateLog = ({
           <button className="btn-add-tag" type="button" onClick={onClickAddTag}>
             Add
           </button>
-          <InfoToolTip
-            text={
-              "A Tag is a label or 1 word summary you associate a Log with. A Tag cannont have any space, number or special character"
-            }
-          />
         </div>
 
         <div className="added-tags-wrapper">{displayAddedTags()}</div>
-        <label className="label">Add a URL:</label>
+        <div className="label-wrapper">
+          <label className="label">Add a URL:</label>
+          <InfoToolTip
+            text={"Link your source or bookmark it to get the full site"}
+          />
+        </div>
         <input
           name="url"
           id="url"
@@ -251,7 +266,13 @@ const CreateLog = ({
             })
           }
         />
-        <label className="label">Add Info:</label>
+        <div className="label-wrapper">
+          <label className="label">Add Info:</label>
+          <InfoToolTip
+            text={`Give your Log some descriptive information, or add some code snippet. 
+              You can copy paste a phrase or paragraph that you find the most valuable from the link or website you bookmarked`}
+          />
+        </div>
         <textarea
           name="description"
           id="description"
